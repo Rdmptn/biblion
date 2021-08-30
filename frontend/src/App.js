@@ -6,6 +6,7 @@ import useApplicationData from "./hooks/useApplicationData.js";
 // import Register from "./pages/Register"
 import Test from "./pages/Test"
 import Register from "./pages/Register"
+import Login from "./pages/Login"
 
 import {
   BrowserRouter as Router,
@@ -16,11 +17,10 @@ import {
 
 const App = () => {
   const {
-      state,
-      dispatch
+    state
   } = useApplicationData();
-    const userList = state.users.map((user) => (<li key={user.id} > {user.name} {user.email} </li>
-    ));
+    // const userList = state.users.map((user) => (<li key={user.id} > {user.name} {user.email} </li>
+    // ));
   return (
   <Router>
   <div className="App" >
@@ -31,16 +31,18 @@ const App = () => {
     <Route path="/register">
             <Register />
     </Route>
-
-    <h1> Users </h1>
-
-    <ul> {userList} </ul>
+    <Route path="/login">
+            <Login />
+    </Route>
+ 
   </div >
   </Router>
   );
 };
 
+   // <h1> Users </h1>
 
+    // <ul> {userList} </ul>
 
 
 export default App;
