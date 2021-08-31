@@ -11,6 +11,7 @@ import useApplicationData from "./hooks/useApplicationData.js";
 import Test from "./pages/Test"
 import Register from "./pages/Register"
 import Login from "./pages/Login"
+import Create from "./pages/posts/Create"
 
 import {
   BrowserRouter as Router,
@@ -61,15 +62,15 @@ const App = () => {
         </Route>
         
           <Route path="/register">
-            {currentUser === null || !currentUser.name ? <Register /> : <Redirect to="/"/>}
+            {currentUser === null ? <Register /> : <Redirect to="/"/>}
           </Route> 
      
           <Route path="/login">
-            {currentUser === null || !currentUser.name ? <Login /> : <Redirect to="/"/>}
+            {currentUser === null ? <Login /> : <Redirect to="/"/>}
           </Route> 
           
           <Route path="/create">
-            {currentUser === null || !currentUser.name ? <Create currentUser={currentUser}/> : <Redirect to="/login"/>}
+            {currentUser === null ? <Redirect to="/login"/> : <Create currentUser={currentUser}/>}
           </Route> 
         
       </div >
