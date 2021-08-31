@@ -10,16 +10,19 @@ export default function Login() {
     console.log("user", user);
     event.preventDefault();
     axios.post(`${api_url}${api_login}`, user)
-    .then((response) => {if (response.status === 200) {
+    .then((response) => {
+      console.log("response.data___+++:::", response.data);
       if (response.data.name) {
-        console.log("Correct email and password!")
+        localStorage.setItem("user", JSON.stringify(response.data));
+        console.log("Correct email and password!");
+        window.location.reload();
         // set cookie to user id
         // redirect to home page or previous page?
       } else {
         // display this error on the page somewhere instead of console.logging
         console.log(response.data.error);
       }
-    }})
+    })
     .catch(error => console.log("WTF:", error))
   }
   

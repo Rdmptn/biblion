@@ -16,7 +16,9 @@ module.exports = (db) => {
 
         if (user && bcrypt.compareSync(password, user.password)) {
         // if (user && hashedPassword === user.password) {
-          res.json(user);
+          // req.session.user_id = data.rows[0].id;
+          res.json(user)
+          res.redirect("/");
         } else {
           //invalid password
           res.json({ error: "Incorrect password" });
