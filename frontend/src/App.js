@@ -67,6 +67,10 @@ const App = () => {
           <Route path="/login">
             {currentUser === null || !currentUser.name ? <Login /> : <Redirect to="/"/>}
           </Route> 
+          
+          <Route path="/create">
+            {currentUser === null || !currentUser.name ? <Create currentUser={currentUser}/> : <Redirect to="/login"/>}
+          </Route> 
         
       </div >
       </Router>

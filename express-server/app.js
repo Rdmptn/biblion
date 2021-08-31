@@ -17,6 +17,7 @@ var registerRouter = require('./routes/register');
 var usersRouter = require('./routes/users');
 var loginRouter =  require('./routes/login');
 var userRouter = require('./routes/user');
+var createPostRouter = require('./routes/posts/create');
 
 var app = express();
 
@@ -40,5 +41,6 @@ app.use('/login', loginRouter(db));
 app.use('/users', usersRouter);
 app.use('/api/users', usersRouter(dbHelpers));
 app.use('/user', userRouter(db));
+app.use('/create', createPostRouter)
 
 module.exports = app;
