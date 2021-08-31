@@ -19,7 +19,8 @@ export default function Register() {
       if (response.status === 200) {
         
       setIsRegistered(true);
-      window.location.reload();
+      // window.location.reload();
+      window.history.back();
     }
   })
     .catch(error => console.log(error))

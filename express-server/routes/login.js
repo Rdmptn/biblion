@@ -18,7 +18,6 @@ module.exports = (db) => {
         // if (user && hashedPassword === user.password) {
           // req.session.user_id = data.rows[0].id;
           res.json(user)
-          res.redirect("/");
         } else {
           //invalid password
           res.json({ error: "Incorrect password" });

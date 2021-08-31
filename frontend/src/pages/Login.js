@@ -15,7 +15,8 @@ export default function Login() {
       if (response.data.name) {
         localStorage.setItem("user", JSON.stringify(response.data));
         console.log("Correct email and password!");
-        window.location.reload();
+        // window.location.reload();
+        window.history.back();
         // set cookie to user id
         // redirect to home page or previous page?
       } else {
