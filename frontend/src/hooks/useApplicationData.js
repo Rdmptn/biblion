@@ -1,6 +1,7 @@
-import {
+import React, {
     useEffect,
-    useReducer
+    useReducer,
+    useState
 } from 'react';
 import dataReducer, {
     SET_USERS
@@ -34,5 +35,12 @@ const useApplicationData = () => {
         dispatch,
     };
 };
+
+// const useApplicationData = () => {
+  // const [state, setState] = useState({
+  // });
+  
+  // return {state}
+// }
 
 export default useApplicationData;

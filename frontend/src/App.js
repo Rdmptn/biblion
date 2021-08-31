@@ -10,6 +10,7 @@ import useApplicationData from "./hooks/useApplicationData.js";
 // import Register from "./pages/Register"
 import Test from "./pages/Test"
 import Register from "./pages/Register"
+import Login from "./pages/Login"
 
 import {
   BrowserRouter as Router,
@@ -19,6 +20,7 @@ import {
 
 
 const App = () => {
+
   const { state, dispatch } = useApplicationData();
   const [currentUser, setCurrentUser] = useState({})
 //  console.log("state======", state);
@@ -36,7 +38,7 @@ const App = () => {
       // setCurrentUser(response.data);
       setCurrentUser(user_session);
     //}})
-  }, [user_session])
+  }, [])
 
   //useEffect(() => {
     //   axios.get(`${api_url}/user/current`).then((response) => {if (response.status === 200) {
@@ -45,8 +47,6 @@ const App = () => {
     //   }})
     // }, [])
 
-    const userList = state.users.map((user) => (<li key={user.id} > {user.name} {user.email} </li>
-    ));
     console.log("currentuser", currentUser);
     const user = state.users.find(user => currentUser === user.id);
     console.log("user", user);
@@ -59,15 +59,14 @@ const App = () => {
         <Route path="/test">
                 <Test />
         </Route>
-        <Route path="/register">
-                <Register />
-        </Route>
-
-        <h1> Users </h1>
-
-        <ul> {userList} </ul>
         
-        {/* {currentUser? <div><div>{user.email}</div><a></a></div>  : "hi" } */}
+          <Route path="/register">
+            {currentUser === null || !currentUser.name ? <Register /> : <Redirect to="/"/>}
+          </Route> 
+     
+          <Route path="/login">
+            {currentUser === null || !currentUser.name ? <Login /> : <Redirect to="/"/>}
+          </Route> 
         
       </div >
       </Router>
@@ -75,10 +74,5 @@ const App = () => {
     
   );
 };
-
-
-
-
-
 
 export default App;

@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 
 
 export default function Register() {
-  const [isRegistered, setIsRegistered] = useState(false);
+  const [isRegistered, setIsRegistered] = useState();
   const [user, setUser] = useState({});
   // localStorage.setItem("user", "popopopopop343434343434");
   const handleSubmit = function(event) {
@@ -19,6 +19,8 @@ export default function Register() {
       if (response.status === 200) {
         
       setIsRegistered(true);
+      // window.location.reload();
+      window.history.back();
     }
   })
     .catch(error => console.log(error))
@@ -50,7 +52,7 @@ export default function Register() {
       password
     }))
   }
-  return isRegistered ? (<Redirect to="/"/>) : (
+  return (
         <form  onSubmit={(event) => handleSubmit(event)}>
           <label>
             Name:

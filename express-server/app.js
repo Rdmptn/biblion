@@ -15,6 +15,7 @@ const dbHelpers = require('./helpers/dbHelpers')(db);
 var indexRouter = require('./routes/index');
 var registerRouter = require('./routes/register');
 var usersRouter = require('./routes/users');
+var loginRouter =  require('./routes/login');
 var userRouter = require('./routes/user');
 
 var app = express();
@@ -35,9 +36,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/register', registerRouter(db));
+app.use('/login', loginRouter(db));
 app.use('/users', usersRouter);
 app.use('/api/users', usersRouter(dbHelpers));
 app.use('/user', userRouter(db));
-
 
 module.exports = app;
