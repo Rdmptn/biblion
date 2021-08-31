@@ -7,13 +7,20 @@ import React, { useEffect, useState } from "react";
 export default function Register() {
   const [isRegistered, setIsRegistered] = useState(false);
   const [user, setUser] = useState({});
+  // localStorage.setItem("user", "popopopopop343434343434");
   const handleSubmit = function(event) {
     console.log("user", user);
     event.preventDefault();
     axios.post(`${api_url}${api_register}`, user)
-    .then((response) => {if (response.status === 200) {
+    .then((response) => {
+      console.log("response.data___+++:::", response.data);
+      localStorage.setItem("user", JSON.stringify(response.data.user));
+      
+      if (response.status === 200) {
+        
       setIsRegistered(true);
-    }})
+    }
+  })
     .catch(error => console.log(error))
   }
 
