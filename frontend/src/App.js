@@ -38,7 +38,7 @@ const App = () => {
       // setCurrentUser(response.data);
       setCurrentUser(user_session);
     //}})
-  }, [user_session])
+  }, [])
 
   //useEffect(() => {
     //   axios.get(`${api_url}/user/current`).then((response) => {if (response.status === 200) {
@@ -59,14 +59,14 @@ const App = () => {
         <Route path="/test">
                 <Test />
         </Route>
-        <Route path="/register">
-                <Register />
-        </Route>
-        <Route path="/login">
-                <Login />
-        </Route>
         
-        {/* {currentUser? <div><div>{user.email}</div><a></a></div>  : "hi" } */}
+          <Route path="/register">
+            {currentUser === null || !currentUser.name ? <Register /> : <Redirect to="/"/>}
+          </Route> 
+     
+          <Route path="/login">
+            {currentUser === null || !currentUser.name ? <Login /> : <Redirect to="/"/>}
+          </Route> 
         
       </div >
       </Router>
