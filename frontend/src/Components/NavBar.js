@@ -3,7 +3,7 @@
 // import React, { useEffect, useState } from "react";
 
 const logout = function() {
-  localStorage.setItem("user", "")
+  localStorage.setItem("user", null)
   window.location.reload();
 }
 
@@ -38,4 +38,3 @@ export const NavBar = (props) => {
         </div>
 }
 export default NavBar;
-
