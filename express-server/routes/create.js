@@ -23,6 +23,7 @@ module.exports = (db) => {
           db.query(`SELECT id FROM categories WHERE topic = $1`, [post.genre])
             .then(data => {
               let categoryId = data.rows[0].id;
+              //Create the new book with associated category id
               db.query(`INSERT INTO books (category_id, title, author)
                         VALUES ($1, $2, $3) RETURNING books.id;`, [categoryId, post.title, post.author])
                 .then(data => {
