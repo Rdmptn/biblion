@@ -20,18 +20,17 @@ const bcrypt = require('bcrypt');
 
 module.exports = (db) => {
   
-  router.get("/:id", (req, res) => {
+  router.get("/", (req, res) => {
     // console.log("register, body", req.body);
-    const body = req.params;
-    console.log("userPosts", body);
+    // const body = req.params;
+    // console.log("userPosts", body);
 
 
     db.query(`SELECT posts.summary, posts.opinion, books.title, books.author, categories.topic 
     FROM posts JOIN books ON posts.book_id=books.id 
-    JOIN categories ON books.category_id=categories.id 
-    WHERE posts.user_id = $1;`, [body.id])
+    JOIN categories ON books.category_id=categories.id;`)
       .then(data => {
-        console.log(data.rows[0]);
+        // console.log(data.rows[0]);
         // req.session.user_id = data.rows[0].id;
         // res.redirect("/api");
         const posts = data.rows
