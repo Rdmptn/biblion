@@ -77,6 +77,10 @@ const App = () => {
           <Route path="/userPosts">
             {!user_session ? <Redirect to="/login"/> : <UserPosts />}
           </Route>
+
+          <Route path="/profile">
+            {!user_session ? <Redirect to="/login"/> : <Profile />}
+          </Route>
         
       </div >
       </Router>
