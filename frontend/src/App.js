@@ -13,6 +13,7 @@ import Register from "./pages/Register"
 import Login from "./pages/Login"
 import Create from "./pages/posts/Create"
 import UserPosts from './pages/UserPosts';
+import SearchResults from './pages/SearchResults';
 
 
 import {
@@ -76,6 +77,10 @@ const App = () => {
 
           <Route path="/userPosts">
             {!user_session ? <Redirect to="/login"/> : <UserPosts />}
+          </Route>
+        
+          <Route path="/searchResults">
+            <SearchResults />
           </Route>
         
       </div >
