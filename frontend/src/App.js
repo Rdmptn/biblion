@@ -25,23 +25,22 @@ import {
 const App = () => {
 
   const { state, dispatch } = useApplicationData();
-  const [currentUser, setCurrentUser] = useState({})
-//  console.log("state======", state);
- let user_session = localStorage.getItem("user");
- if (user_session) {
-  user_session = JSON.parse(user_session);
-  
- }
-//  user_session = JSON.parse(user_session);
- console.log("user@@@@@@@", user_session);
+  const [currentUser, setCurrentUser] = useState({});
+  // console.log("state======", state);
+  let user_session = localStorage.getItem("user");
+  if (user_session) {
+    user_session = JSON.parse(user_session);
+  }
+  // user_session = JSON.parse(user_session);
+  // console.log("user@@@@@@@", user_session);
  
   useEffect(() => {
     // axios.get(`${api_url}/user/current`).then((response) => {if (response.status === 200) {
     //   console.log("data", response.data);
       // setCurrentUser(response.data);
-      setCurrentUser(user_session);
-    //}})
+    setCurrentUser(user_session);
   }, [])
+ 
 
   //useEffect(() => {
     //   axios.get(`${api_url}/user/current`).then((response) => {if (response.status === 200) {
@@ -50,9 +49,13 @@ const App = () => {
     //   }})
     // }, [])
 
-    console.log("currentuser", currentUser);
+    // console.log("currentuser", currentUser);
     const user = state.users.find(user => currentUser === user.id);
-    console.log("user", user);
+    // console.log("user", user);
+    
+  console.log("currentUser ->", currentUser);
+  console.log("user ->", user);
+    
   return (
     <div>
       <NavBar currentUser={currentUser} user={currentUser}/>
@@ -60,19 +63,19 @@ const App = () => {
       <div className="App" >
         
           <Route path="/register">
-            {currentUser === null ? <Register /> : <Redirect to="/"/>}
+            {!user_session ? <Register /> : <Redirect to="/"/>}
           </Route> 
      
           <Route path="/login">
-            {currentUser === null ? <Login /> : <Redirect to="/"/>}
+            {!user_session ? <Login /> : <Redirect to="/"/>}
           </Route> 
           
           <Route path="/create">
-            {currentUser === null ? <Redirect to="/login"/> : <Create currentUser={currentUser}/>}
+            {!user_session ? <Redirect to="/login"/> : <Create currentUser={currentUser}/>}
           </Route> 
 
           <Route path="/userPosts">
-            <UserPosts />
+            {!user_session ? <Redirect to="/login"/> : <UserPosts />}
           </Route>
         
       </div >
