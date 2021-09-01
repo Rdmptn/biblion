@@ -6,16 +6,33 @@ import React, { useEffect, useState } from "react";
 
 export default function SearchResults(props) {
   const searchTerm = props.searchTerm;
-  console.log("SEARCHTERM:", searchTerm);
   const [posts, setPosts] = useState([]);
 
   axios.post(`${api_url}${api_search}`, searchTerm)
-  .then(response => setPosts(response.data))
+  .then((response) => { 
+    if (!response.data.message && !response.data.error) {
+      setPosts(response.data)
+      console.log("RESPONSE:", response.data);
+      console.log("POSTS:", posts);
+    }
+  })
     return (
       <div>
         <h1> Search Results for "{searchTerm}" </h1>
-          {posts ? posts.map(post => <div>{JSON.stringify(post)}</div>) : "No results found"}
+          {posts.length > 1 
+            ? 
+          posts.map(post => 
+          <ul>
+            <li>Book Title: {post.title}</li>
+            <li>Author: {post.author}</li>
+            <li>Genre: {post.topic}</li>
+            <li>Summary: {post.summary}</li>
+            <li>Opinion: {post.opinion}</li>
+          </ul>
+          )
+          : 
+          "No results found"}
       </div>
-    )          
-  
+    )  
+   
 }

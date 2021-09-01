@@ -22,11 +22,14 @@ module.exports = (db) => {
                 let postResults = data.rows;
                 for (let postResult of postResults) {
                   let post_id = postResult.id;
-                  db.query(`SELECT * FROM posts WHERE posts.id = $1;`, [post_id])
+                  // db.query(`SELECT * FROM posts WHERE posts.id = $1;`, [post_id])
+                  db.query(`SELECT posts.summary, posts.opinion, books.title, books.author, categories.topic 
+                            FROM posts JOIN books ON posts.book_id=books.id 
+                            JOIN categories ON books.category_id=categories.id 
+                            WHERE posts.id = $1;`, [post_id])
                     .then(data => {
                       let thisPost = data.rows[0];
                       posts.push(thisPost);
-                      // console.log("RESULTS LENGTH:", results.length);
                       if (results[results.length-1] === result && postResults[postResults.length-1] === postResult) { 
                         res.json(posts)
                       }
