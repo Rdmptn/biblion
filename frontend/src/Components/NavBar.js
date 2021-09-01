@@ -25,14 +25,15 @@ export const NavBar = (props) => {
     window.location.reload();
   }
 
-  const handleSearch = function(event) {
-    event.preventDefault();
-    axios.get(`${api_url}${api_search}`)
-    .then((response) => {
-      console.log("response.data___+++:::", response.data); 
-    })
-    .catch(error => console.log(error))
-  }
+  // const handleSearch = function(event) {
+    // event.preventDefault();
+    // axios.get(`${api_url}${api_search}`)
+    // .then((response) => {
+      // console.log("response.data___+++:::", response.data); 
+      
+    // })
+    // .catch(error => console.log(error))
+  // }
   
   // const [currentUser, setCurrentUser] = useState(props.currentUser);
   // console.log("++++++++====", props);
@@ -41,8 +42,8 @@ export const NavBar = (props) => {
           {props.currentUser ? 
           <div>
             <div>
-            <form onSubmit={(event) => handleSearch(event)}>
-              <input type="text" />
+            <form method="POST" action="searchResults">
+              <input type="text" name="searchterms"/>
             </form>
               <a href='/create'><button>New Post</button></a>
               <a href='/userPosts'><button>See All Your Posts</button></a>
