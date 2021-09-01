@@ -17,6 +17,7 @@ export const NavBar = (props) => {
           {props.currentUser ? 
           <div>
             <div>
+            <a href='/profile'><button>Profile</button></a>
               <a href='/create'><button>New Post</button></a>
               <a href='/userPosts'><button>See All Your Posts</button></a>
               {props.currentUser.email}

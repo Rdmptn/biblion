@@ -4,19 +4,25 @@ import axios from "axios"
 import React, { useEffect, useState } from "react";
 
 
-export default function UserPosts() {
-  const [posts, setPosts] = useState([]);
+export default function Profile() {
+  const [profile, setProfile] = useState([]);
 
   useEffect( () => {
     
     const user =JSON.parse(localStorage.getItem("user"));
-    axios.get(`${api_url}${api_userPosts}/${user.id}`)
-    .then(response => setPosts(response.data.posts))
+    axios.get(`${api_url}${api_profile}/${user.id}`)
+    .then(response => setProfile(response.data.profile))
   }, [])
+  
+  const profileValues = JSON.stringify(profile);
 
   return (
     <div>
-      {posts.map(post => <div>{JSON.stringify(post)}</div>)}
+      {/* {<div>{JSON.stringify(profile)}</div>} */}
+      <ul>
+        <li>Name: {profile.name}</li>
+        <li>Email: {profile.email}</li>
+      </ul>
     </div>
   )          
   

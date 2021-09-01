@@ -13,6 +13,7 @@ import Register from "./pages/Register"
 import Login from "./pages/Login"
 import Create from "./pages/posts/Create"
 import UserPosts from './pages/UserPosts';
+import Profile from './pages/Profile';
 
 
 import {
