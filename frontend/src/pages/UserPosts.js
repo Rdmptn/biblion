@@ -8,9 +8,10 @@ export default function UserPosts() {
   const [posts, setPosts] = useState([]);
 
   useEffect( () => {
+    
     const user =JSON.parse(localStorage.getItem("user"));
     axios.get(`${api_url}${api_userPosts}/${user.id}`)
-    .then(response => setPosts(response.data))
+    .then(response => setPosts(response.data.posts))
   }, [])
 
   return (
