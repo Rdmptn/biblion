@@ -12,6 +12,8 @@ import Test from "./pages/Test"
 import Register from "./pages/Register"
 import Login from "./pages/Login"
 import Create from "./pages/posts/Create"
+import UserPosts from './pages/UserPosts';
+
 
 import {
   BrowserRouter as Router,
@@ -56,10 +58,6 @@ const App = () => {
       <NavBar currentUser={currentUser} user={currentUser}/>
       <Router>
       <div className="App" >
-      
-        <Route path="/test">
-                <Test />
-        </Route>
         
           <Route path="/register">
             {currentUser === null ? <Register /> : <Redirect to="/"/>}
@@ -72,6 +70,10 @@ const App = () => {
           <Route path="/create">
             {currentUser === null ? <Redirect to="/login"/> : <Create currentUser={currentUser}/>}
           </Route> 
+
+          <Route path="/userPosts">
+            <UserPosts />
+          </Route>
         
       </div >
       </Router>
