@@ -29,6 +29,7 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState({});
   // console.log("state======", state);
   let user_session = localStorage.getItem("user");
+  let searchTerm = localStorage.getItem("searchTerm")
   if (user_session) {
     user_session = JSON.parse(user_session);
   }
@@ -80,7 +81,7 @@ const App = () => {
           </Route>
         
           <Route path="/searchResults">
-            <SearchResults />
+            <SearchResults searchTerm={searchTerm}/>
           </Route>
         
       </div >

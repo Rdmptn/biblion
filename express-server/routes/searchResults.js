@@ -4,9 +4,10 @@ const router  = express.Router();
 module.exports = (db) => {
   
   router.post("/", (req, res) => {
-    const searchTerm = "";
-    const posts = [];
+    const obj = JSON.parse(JSON.stringify(req.body));
+    const searchTerm = Object.keys(obj)[0];
     const noResults = {message: "No results found!"};
+    let posts = [];
 
     //First check if book already exists in books table
     db.query(`SELECT books.id FROM books WHERE books.title = $1 OR books.author = $1;`, [searchTerm])
@@ -16,7 +17,7 @@ module.exports = (db) => {
           let results = data.rows;
           for (let result of results) {
             let book_id = result.id;
-            db.query(`SELECT posts.id FROM posts WHERE books.id = $1;`, [book_id])
+            db.query(`SELECT posts.id FROM posts WHERE posts.book_id = $1;`, [book_id])
               .then(data => {
                 let postResults = data.rows;
                 for (let postResult of postResults) {
@@ -25,11 +26,14 @@ module.exports = (db) => {
                     .then(data => {
                       let thisPost = data.rows[0];
                       posts.push(thisPost);
+                      // console.log("RESULTS LENGTH:", results.length);
+                      if (results[results.length-1] === result && postResults[postResults.length-1] === postResult) { 
+                        res.json(posts)
+                      }
                     })
                 }
-              }) 
+              })  
           }
-          res.json({posts})
         // If it doesn't, display a message
         } else {
           res.json(noResults);
