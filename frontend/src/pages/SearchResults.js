@@ -12,8 +12,6 @@ export default function SearchResults(props) {
   .then((response) => { 
     if (!response.data.message && !response.data.error) {
       setPosts(response.data)
-      console.log("RESPONSE:", response.data);
-      console.log("POSTS:", posts);
     }
   })
     return (

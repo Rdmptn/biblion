@@ -5,12 +5,12 @@ module.exports = (db) => {
   
   router.post("/", (req, res) => {
     const obj = JSON.parse(JSON.stringify(req.body));
-    const searchTerm = Object.keys(obj)[0];
+    const searchTerm = Object.keys(obj)[0].toLowerCase();
     const noResults = {message: "No results found!"};
     let posts = [];
 
     //First check if book already exists in books table
-    db.query(`SELECT books.id FROM books WHERE books.title = $1 OR books.author = $1;`, [searchTerm])
+    db.query(`SELECT books.id FROM books WHERE LOWER(books.title) LIKE $1 OR LOWER(books.author) LIKE $1;`, ['%' + searchTerm + '%'])
       .then(data => {
         //If it does grab all matching book ids and search for any posts with them
         if (data.rowCount > 0) {

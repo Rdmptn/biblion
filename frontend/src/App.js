@@ -55,9 +55,6 @@ const App = () => {
     const user = state.users.find(user => currentUser === user.id);
     // console.log("user", user);
     
-  console.log("currentUser ->", currentUser);
-  console.log("user ->", user);
-    
   return (
     <div>
       <NavBar currentUser={currentUser} user={currentUser}/>

@@ -20,13 +20,14 @@ export const NavBar = (props) => {
   }
   
   const handleSubmit = function(event) {
+    console.log("REDIRECT");
     event.preventDefault();
-    localStorage.setItem("searchTerm", searchTerm)
     window.location.replace("/searchResults");
   }
   
   const handleChangeSearch = function(event) {
     searchTerm = event.target.value;
+    localStorage.setItem("searchTerm", searchTerm);
   }
   
   return <div>
