@@ -20,9 +20,10 @@ const bcrypt = require('bcrypt');
 
 module.exports = (db) => {
   
-  router.get("/", (req, res) => {
+  router.get("/:id", (req, res) => {
     // console.log("register, body", req.body);
     const body = req.params;
+    console.log("userPosts", body);
 
 
     db.query(`SELECT * FROM posts WHERE user_id = $1;`, [body.id])
@@ -46,3 +47,7 @@ module.exports = (db) => {
 
   return router;
 };
+
+
+// SELECT * FROM posts WHERE user_id = $1;
+// (`SELECT * FROM posts WHERE user_id = $1;`, [body.id])

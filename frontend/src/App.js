@@ -11,6 +11,7 @@ import useApplicationData from "./hooks/useApplicationData.js";
 import Test from "./pages/Test"
 import Register from "./pages/Register"
 import Login from "./pages/Login"
+import UserPosts from './pages/UserPosts';
 
 import {
   BrowserRouter as Router,
@@ -67,6 +68,10 @@ const App = () => {
           <Route path="/login">
             {currentUser === null || !currentUser.name ? <Login /> : <Redirect to="/"/>}
           </Route> 
+
+          <Route path="/userPosts">
+                <UserPosts />
+        </Route>
         
       </div >
       </Router>
