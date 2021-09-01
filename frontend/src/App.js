@@ -13,6 +13,7 @@ import Register from "./pages/Register"
 import Login from "./pages/Login"
 import Create from "./pages/posts/Create"
 import UserPosts from './pages/UserPosts';
+import Profile from './pages/Profile';
 
 
 import {
@@ -76,6 +77,10 @@ const App = () => {
 
           <Route path="/userPosts">
             {!user_session ? <Redirect to="/login"/> : <UserPosts />}
+          </Route>
+
+          <Route path="/profile">
+            {!user_session ? <Redirect to="/login"/> : <Profile />}
           </Route>
         
       </div >
