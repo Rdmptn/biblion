@@ -17,9 +17,10 @@ export const NavBar = (props) => {
           {props.currentUser ? 
           <div>
             <div>
+              <a href='/create'><button>New Post</button></a>
+              <a href='/userPosts'><button>See All Your Posts</button></a>
               {props.currentUser.email}
               <button onClick={() => logout()}>Logout</button>
-              <a href='/userPosts'><button>See All Your Posts</button></a>
             </div>
           </div> 
           : 
