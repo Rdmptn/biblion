@@ -20,6 +20,7 @@ var userRouter = require('./routes/user');
 var createPostRouter = require('./routes/create');
 var userPostsRouter = require('./routes/userPosts');
 var profileRouter = require('./routes/profile');
+var allPostsRouter = require('./routes/allPosts');
 
 var app = express();
 
@@ -45,6 +46,7 @@ app.use('/api/users', usersRouter(dbHelpers));
 app.use('/user', userRouter(db));
 app.use('/create', createPostRouter(db))
 app.use('/userPosts', userPostsRouter(db));
+app.use('/allPosts', allPostsRouter(db));
 app.use('/profile', profileRouter(db));
 
 module.exports = app;
