@@ -8,6 +8,7 @@ export default function Create(props) {
   let currentUser = props.currentUser; 
   let post = {};
   post.user_id = currentUser.id;
+  post.genre = "drama";
 
   const handleSubmit = function(event) {
     event.preventDefault();
