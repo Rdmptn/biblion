@@ -32,7 +32,7 @@ export default function SearchPostsByCategory() {
   // let topic = "";
   // let categorySelected = false;
   const [categorySelected, setCategorySelected] = useState(false);
-  const [topic, setTopic] = useState("");
+  const [topic, setTopic] = useState("drama");
   const handleSubmit = function(event) {
     console.log("topc++==", topic);
     console.log('string', `${api_url}${api_searchPostsByCategory}/${topic}`);
