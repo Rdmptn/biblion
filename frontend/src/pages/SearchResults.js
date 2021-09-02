@@ -8,12 +8,17 @@ export default function SearchResults(props) {
   const searchTerm = props.searchTerm;
   const [posts, setPosts] = useState([]);
 
-  axios.post(`${api_url}${api_search}`, searchTerm)
-  .then((response) => { 
-    if (!response.data.message && !response.data.error) {
-      setPosts(response.data)
-    }
-  })
+  useEffect(() => {
+    axios.post(`${api_url}${api_search}`, searchTerm)
+    .then((response) => { 
+      if (!response.data.message && !response.data.error) {
+        setPosts(response.data)
+      }
+    })
+  }, [])
+
+  
+  
     return (
       <div>
         <h1> Search Results for "{searchTerm}" </h1>
