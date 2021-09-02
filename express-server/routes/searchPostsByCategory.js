@@ -12,7 +12,7 @@ module.exports = (db) => {
     const body = req.params;
     console.log("searchCategoy++++===>>>>>", body);
 
-    db.query(`SELECT posts.summary, posts.opinion, books.title, books.author, categories.topic 
+    db.query(`SELECT posts.summary, posts.opinion, books.title, books.author, books.cover_url, categories.topic 
     FROM posts JOIN books ON posts.book_id=books.id 
     JOIN categories ON books.category_id=categories.id 
     WHERE categories.topic = $1;`, [body.topic])
