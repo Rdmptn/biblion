@@ -14,6 +14,7 @@ import Login from "./pages/Login"
 import Create from "./pages/posts/Create"
 import UserPosts from './pages/UserPosts';
 import Profile from './pages/Profile';
+import SearchPostsByCategory from './pages/SearchPostsByCategory';
 
 
 import {
@@ -81,6 +82,10 @@ const App = () => {
 
           <Route path="/profile">
             {!user_session ? <Redirect to="/login"/> : <Profile />}
+          </Route>
+
+          <Route path="/searchPostsByCategory">
+            {!user_session ? <Redirect to="/login"/> : <SearchPostsByCategory />}
           </Route>
         
       </div >

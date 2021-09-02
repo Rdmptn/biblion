@@ -20,6 +20,7 @@ var userRouter = require('./routes/user');
 var createPostRouter = require('./routes/create');
 var userPostsRouter = require('./routes/userPosts');
 var profileRouter = require('./routes/profile');
+var searchPostsByCategoryRouter = require('./routes/searchPostsByCategory');
 
 var app = express();
 
@@ -46,5 +47,6 @@ app.use('/user', userRouter(db));
 app.use('/create', createPostRouter(db))
 app.use('/userPosts', userPostsRouter(db));
 app.use('/profile', profileRouter(db));
+app.use('/searchPostsByCategory', searchPostsByCategoryRouter(db));
 
 module.exports = app;
