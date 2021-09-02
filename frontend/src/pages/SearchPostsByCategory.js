@@ -29,23 +29,25 @@ export default function SearchPostsByCategory() {
   // post.user_id = currentUser.id;
   // post.genre = "drama";
   const [posts, setPosts] = useState([]);
-  let topic = "";
-  let categorySelected = false;
-
+  // let topic = "";
+  // let categorySelected = false;
+  const [categorySelected, setCategorySelected] = useState(false);
+  const [topic, setTopic] = useState("");
   const handleSubmit = function(event) {
     console.log("topc++==", topic);
     console.log('string', `${api_url}${api_searchPostsByCategory}/${topic}`);
     event.preventDefault();
     axios.get(`${api_url}${api_searchPostsByCategory}/${topic}`)
     .then(response => {
+      console.log("response-category++", response);
       setPosts(response.data.posts);
-      categorySelected = true;
+      setCategorySelected(true);
     })
     
   }
   
   const handleChangeGenre = function(event) {
-    topic = event.target.value;
+    setTopic(event.target.value);
   }
   
   if (categorySelected) {
