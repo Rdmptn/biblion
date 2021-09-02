@@ -14,6 +14,9 @@ import Login from "./pages/Login"
 import Create from "./pages/posts/Create"
 import UserPosts from './pages/UserPosts';
 import SearchResults from './pages/SearchResults';
+import Profile from './pages/Profile';
+import SearchPostsByCategory from './pages/SearchPostsByCategory';
+import AllPosts from './pages/AllPosts';
 
 
 import {
@@ -75,6 +78,18 @@ const App = () => {
 
           <Route path="/userPosts">
             {!user_session ? <Redirect to="/login"/> : <UserPosts />}
+          </Route>
+
+          <Route path="/profile">
+            {!user_session ? <Redirect to="/login"/> : <Profile />}
+          </Route>
+
+          <Route path="/searchPostsByCategory">
+            {!user_session ? <Redirect to="/login"/> : <SearchPostsByCategory />}
+          </Route>
+
+          <Route path="/allPosts">
+            {!user_session ? <Redirect to="/login"/> : <AllPosts />}
           </Route>
         
           <Route path="/searchResults">

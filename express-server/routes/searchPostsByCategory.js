@@ -4,32 +4,18 @@ const bcrypt = require('bcrypt');
 
 
 
-// router.post("/", (req, res) => {
-//     console.log("register, body", req.body);
-//     const body = req.body;
-
-    
-    
-//   });
-
-
-// module.exports = router;
-
-
-
 
 module.exports = (db) => {
   
-  router.get("/:id", (req, res) => {
+  router.get("/:topic", (req, res) => {
     // console.log("register, body", req.body);
     const body = req.params;
-    console.log("userPosts", body);
-
+    console.log("searchCategoy++++===>>>>>", body);
 
     db.query(`SELECT posts.summary, posts.opinion, books.title, books.author, categories.topic 
     FROM posts JOIN books ON posts.book_id=books.id 
     JOIN categories ON books.category_id=categories.id 
-    WHERE posts.user_id = $1;`, [body.id])
+    WHERE categories.topic = $1;`, [body.topic])
       .then(data => {
         console.log(data.rows[0]);
         // req.session.user_id = data.rows[0].id;
