@@ -20,7 +20,6 @@ export const NavBar = (props) => {
   }
   
   const handleSubmit = function(event) {
-    console.log("REDIRECT");
     event.preventDefault();
     window.location.replace("/searchResults");
   }
@@ -35,7 +34,7 @@ export const NavBar = (props) => {
           <div>
             <div>
               <form onSubmit={(event) => handleSubmit(event)}>
-                <input type="text" onChange={handleChangeSearch}/>
+                <input type="text" placeholder="Search Book Title or Author:" onChange={handleChangeSearch}/>
                 <input type="submit" value="Search" />
               </form>
               <a href='/profile'><button>Profile</button></a>
@@ -49,6 +48,12 @@ export const NavBar = (props) => {
           </div> 
           : 
           <div>
+            <form onSubmit={(event) => handleSubmit(event)}>
+                <input type="text" placeholder="Search Book Title or Author:" onChange={handleChangeSearch}/>
+                <input type="submit" value="Search" />
+            </form>
+            <a href='/searchPostsByCategory'><button>Search Posts By Genre</button></a>
+            <a href='/allPosts'><button>See All Posts</button></a>
             <a href='/register'>
               <button>
                 Register
