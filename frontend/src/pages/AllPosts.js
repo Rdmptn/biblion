@@ -18,6 +18,7 @@ export default function AllPosts() {
    <div>
           {posts.map(post => 
             <ul>
+            <li><img src={post.cover_url}/></li>
             <li>Book Title: {post.title}</li>
             <li>Author: {post.author}</li>
             <li>Genre: {post.topic}</li>

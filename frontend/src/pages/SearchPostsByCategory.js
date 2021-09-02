@@ -55,12 +55,13 @@ export default function SearchPostsByCategory() {
       <div>
           {posts.map(post => 
             <ul>
-            <li>Book Title: {post.title}</li>
-            <li>Author: {post.author}</li>
-            <li>Genre: {post.topic}</li>
-            <li>Summary: {post.summary}</li>
-            <li>Opinion: {post.opinion}</li>
-          </ul>
+              <li><img src={post.cover_url}/></li>
+              <li>Book Title: {post.title}</li>
+              <li>Author: {post.author}</li>
+              <li>Genre: {post.topic}</li>
+              <li>Summary: {post.summary}</li>
+              <li>Opinion: {post.opinion}</li>
+            </ul>
           )}
           
       </div> 
