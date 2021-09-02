@@ -1,23 +1,44 @@
 // const [currentUser, setCurrentUser] = useState(props.currentUser);
 // const [currentUser, setCurrentUser] = useState(props.currentUser);
 // import React, { useEffect, useState } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect
+} from "react-router-dom";
 
-const logout = function() {
-  localStorage.setItem("user", null)
-  window.location.reload();
-}
+import axios from "axios";
+import { api_url, api_search } from "../constants";
 
 export const NavBar = (props) => {
   
+  let searchTerm = "";
+ 
+  const logout = function() {
+    localStorage.setItem("user", null)
+    window.location.reload();
+  }
   
-  // const [currentUser, setCurrentUser] = useState(props.currentUser);
-  // console.log("++++++++====", props);
-  // return <div>HiHIHIHIHIHIHI</div>
+  const handleSubmit = function(event) {
+    console.log("REDIRECT");
+    event.preventDefault();
+    window.location.replace("/searchResults");
+  }
+  
+  const handleChangeSearch = function(event) {
+    searchTerm = event.target.value;
+    localStorage.setItem("searchTerm", searchTerm);
+  }
+  
   return <div>
           {props.currentUser ? 
           <div>
             <div>
-            <a href='/profile'><button>Profile</button></a>
+              <form onSubmit={(event) => handleSubmit(event)}>
+                <input type="text" onChange={handleChangeSearch}/>
+                <input type="submit" value="Search" />
+              </form>
+              <a href='/profile'><button>Profile</button></a>
               <a href='/create'><button>New Post</button></a>
               <a href='/userPosts'><button>See All Your Posts</button></a>
               <a href='/searchPostsByCategory'><button>Search Posts By Genre</button></a>

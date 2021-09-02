@@ -13,6 +13,7 @@ import Register from "./pages/Register"
 import Login from "./pages/Login"
 import Create from "./pages/posts/Create"
 import UserPosts from './pages/UserPosts';
+import SearchResults from './pages/SearchResults';
 import Profile from './pages/Profile';
 import SearchPostsByCategory from './pages/SearchPostsByCategory';
 import AllPosts from './pages/AllPosts';
@@ -31,6 +32,7 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState({});
   // console.log("state======", state);
   let user_session = localStorage.getItem("user");
+  let searchTerm = localStorage.getItem("searchTerm")
   if (user_session) {
     user_session = JSON.parse(user_session);
   }
@@ -55,9 +57,6 @@ const App = () => {
     // console.log("currentuser", currentUser);
     const user = state.users.find(user => currentUser === user.id);
     // console.log("user", user);
-    
-  console.log("currentUser ->", currentUser);
-  console.log("user ->", user);
     
   return (
     <div>
@@ -91,6 +90,10 @@ const App = () => {
 
           <Route path="/allPosts">
             {!user_session ? <Redirect to="/login"/> : <AllPosts />}
+          </Route>
+        
+          <Route path="/searchResults">
+            <SearchResults searchTerm={searchTerm}/>
           </Route>
         
       </div >
