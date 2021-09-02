@@ -1,23 +1,21 @@
-import {api_url, api_userPosts} from "../constants"
+import {api_url, api_allPosts} from "../constants"
 import { Redirect } from 'react-router';
 import axios from "axios"
 import React, { useEffect, useState } from "react";
 
 
-
-
-export default function UserPosts() {
+export default function AllPosts() {
   const [posts, setPosts] = useState([]);
 
   useEffect( () => {
     
     const user =JSON.parse(localStorage.getItem("user"));
-    axios.get(`${api_url}${api_userPosts}/${user.id}`)
+    axios.get(`${api_url}${api_allPosts}`)
     .then(response => setPosts(response.data.posts))
   }, [])
 
   return (
-      <div>
+   <div>
           {posts.map(post => 
             <ul>
             <li>Book Title: {post.title}</li>
@@ -28,7 +26,7 @@ export default function UserPosts() {
           </ul>
           )}
           
-      </div>  
+      </div> 
   )          
   
 }

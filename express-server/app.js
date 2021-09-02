@@ -21,6 +21,7 @@ var createPostRouter = require('./routes/create');
 var userPostsRouter = require('./routes/userPosts');
 var profileRouter = require('./routes/profile');
 var searchPostsByCategoryRouter = require('./routes/searchPostsByCategory');
+var allPostsRouter = require('./routes/allPosts');
 
 var app = express();
 
@@ -46,6 +47,7 @@ app.use('/api/users', usersRouter(dbHelpers));
 app.use('/user', userRouter(db));
 app.use('/create', createPostRouter(db))
 app.use('/userPosts', userPostsRouter(db));
+app.use('/allPosts', allPostsRouter(db));
 app.use('/profile', profileRouter(db));
 app.use('/searchPostsByCategory', searchPostsByCategoryRouter(db));
 
