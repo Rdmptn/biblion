@@ -13,11 +13,16 @@ module.exports = (db) => {
         //If it does grab the book_id and create a new post
         if (data.rowCount === 1) {
           let bookId = data.rows[0].id
-          db.query(`INSERT INTO posts (user_id, book_id, summary, opinion)
-                    VALUES ($1, $2, $3, $4) RETURNING posts.id;`, [post.user_id, bookId, post.summary, post.opinion])
-            .then(data => {
-              res.json(data);
-            })  
+          //Update user stats
+          db.query(`UPDATE users SET post_count = post_count + 1
+                    WHERE users.id = $1;`, [post.user_id])
+          .then(data => {
+            db.query(`INSERT INTO posts (user_id, book_id, summary, opinion)
+                      VALUES ($1, $2, $3, $4) RETURNING posts.id;`, [post.user_id, bookId, post.summary, post.opinion])
+              .then(data => {
+                res.json(data);
+              })  
+            })
         // If it doesn't, first create the book, then create the post using that book_id
         } else {
           //Get category id for genre
@@ -35,6 +40,7 @@ module.exports = (db) => {
                             VALUES ($1, $2, $3, $4, $5) RETURNING books.id;`, [categoryId, post.title, post.author, book_pages, cover_url])
                     .then(data => {
                       let bookId = data.rows[0].id
+                      //Update user stats
                       db.query(`UPDATE users SET post_count = post_count + 1, page_count = page_count + $1
                                 WHERE users.id = $2 RETURNING *;`, [book_pages, post.user_id])
                       .then(data => {
@@ -53,6 +59,7 @@ module.exports = (db) => {
                             VALUES ($1, $2, $3) RETURNING books.id;`, [categoryId, post.title, post.author])
                             .then(data => {
                       let bookId = data.rows[0].id
+                      //Update user stats
                       db.query(`UPDATE users SET post_count = post_count + 1
                                 WHERE users.id = $1;`, [post.user_id])
                       .then(data => {

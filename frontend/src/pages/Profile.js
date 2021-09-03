@@ -25,12 +25,23 @@ export default function Profile() {
         <li>Email: {profile.email}</li>
       </ul>
       <ul>
-        <h4> Stats </h4>
+        <h4>Stats</h4>
         <li>Books Read: {profile.post_count}</li>
         <li>Pages Read: {profile.page_count}</li>
         <li>Comments: {profile.comment_count}</li>
       </ul>
+      <h4>Unlocked Badges</h4>
+      {profile.unlocked_badges ? profile.unlocked_badges.map(badge => 
+        <ul>
+          <li><img src={badge.image}/></li>
+          <li>{badge.name}</li>
+        </ul>
+      ) : ""} 
+      
     </div>
   )          
   
 }
+
+
+ 
