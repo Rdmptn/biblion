@@ -85,11 +85,11 @@ const App = () => {
           </Route>
 
           <Route path="/searchPostsByCategory">
-            {!user_session ? <Redirect to="/login"/> : <SearchPostsByCategory />}
+            {<SearchPostsByCategory />}
           </Route>
 
           <Route path="/allPosts">
-            {!user_session ? <Redirect to="/login"/> : <AllPosts />}
+            {<AllPosts />}
           </Route>
         
           <Route path="/searchResults">

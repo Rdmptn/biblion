@@ -28,13 +28,14 @@ module.exports = (db) => {
 
     db.query(`SELECT * FROM users WHERE id = $1;`, [body.id])
       .then(data => {
-        console.log(data.rows[0]);
-        // req.session.user_id = data.rows[0].id;
-        // res.redirect("/api");
         const profile = data.rows[0];
-        return res.status(200).send({ profile })
+        const active_badge = profile.active_badge;
+        db.query(`SELECT image FROM badges WHERE id = $1;`, [active_badge])
+        .then(data => {
+          profile.image = data.rows[0].image;
+          return res.status(200).send({ profile })
 
-
+        })
       })
       .catch(err => {
         console.log(err);
