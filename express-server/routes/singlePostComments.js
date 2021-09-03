@@ -23,20 +23,17 @@ module.exports = (db) => {
   router.get("/:id", (req, res) => {
     // console.log("register, body", req.body);
     const body = req.params;
-    console.log("userPosts", body);
 
 
-    db.query(`SELECT users.name, posts.id, posts.summary, posts.opinion, books.title, books.author, books.cover_url, categories.topic 
-    FROM users JOIN posts ON users.id=posts.user_id
-    JOIN books ON posts.book_id=books.id 
-    JOIN categories ON books.category_id=categories.id 
-    WHERE posts.user_id = $1;`, [body.id])
+    db.query(`SELECT comments.id, comments.message 
+    FROM posts JOIN comments ON posts.id=comments.post_id 
+    WHERE posts.id = $1;`, [body.id])
       .then(data => {
         console.log(data.rows[0]);
         // req.session.user_id = data.rows[0].id;
         // res.redirect("/api");
-        const posts = data.rows
-        return res.status(200).send({ posts })
+        const comments = data.rows
+        return res.status(200).send({ comments })
 
 
       })

@@ -2,6 +2,7 @@ import {api_url, api_allPosts} from "../constants"
 import { Redirect } from 'react-router';
 import axios from "axios"
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 
 export default function AllPosts() {
@@ -18,13 +19,16 @@ export default function AllPosts() {
    <div>
           {posts.map(post => 
             <ul>
-            <li><img src={post.cover_url}/></li>
-            <li>Book Title: {post.title}</li>
-            <li>Author: {post.author}</li>
-            <li>Genre: {post.topic}</li>
-            <li>Summary: {post.summary}</li>
-            <li>Opinion: {post.opinion}</li>
-          </ul>
+              <li>Post id: {post.id}</li>
+              <li>Poster's Name: {post.name}</li>
+              <li><img src={post.cover_url}/></li>
+              <li>Book Title: {post.title}</li>
+              <li>Author: {post.author}</li>
+              <li>Genre: {post.topic}</li>
+              <li>Summary: {post.summary}</li>
+              <li>Opinion: {post.opinion}</li>
+              <li><Link to={`/Posts/${post.id}`}>View Post Details</Link></li>
+            </ul>
           )}
           
       </div> 

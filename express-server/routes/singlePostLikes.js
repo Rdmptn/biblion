@@ -5,24 +5,24 @@ const bcrypt = require('bcrypt');
 
 
 
+
 module.exports = (db) => {
   
-  router.get("/:topic", (req, res) => {
+  router.get("/:id", (req, res) => {
     // console.log("register, body", req.body);
     const body = req.params;
-    console.log("searchCategoy++++===>>>>>", body);
 
-    db.query(`SELECT users.name, posts.id, posts.summary, posts.opinion, books.title, books.author, books.cover_url, categories.topic 
-    FROM users JOIN posts ON users.id=posts.user_id
-    JOIN books ON posts.book_id=books.id 
-    JOIN categories ON books.category_id=categories.id 
-    WHERE categories.topic = $1;`, [body.topic])
+
+    db.query(`SELECT COUNT(*) 
+    FROM posts JOIN likes ON posts.id=likes.post_id 
+    WHERE posts.id = $1;`, [body.id])
       .then(data => {
-        console.log(data.rows[0]);
+        console.log("likesCount", data.rows[0]);
         // req.session.user_id = data.rows[0].id;
         // res.redirect("/api");
-        const posts = data.rows
-        return res.status(200).send({ posts })
+        const likesCount = data.rows[0];
+        console.log("likesCount++++====", likesCount);
+        return res.status(200).send({ likesCount })
 
 
       })
