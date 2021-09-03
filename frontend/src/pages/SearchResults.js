@@ -22,10 +22,11 @@ export default function SearchResults(props) {
     return (
       <div>
         <h1> Search Results for "{searchTerm}" </h1>
-          {posts.length > 1 
+          {posts.length > 0 
             ? 
           posts.map(post => 
           <ul>
+            <li><img src={post.cover_url}/></li>
             <li>Book Title: {post.title}</li>
             <li>Author: {post.author}</li>
             <li>Genre: {post.topic}</li>

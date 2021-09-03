@@ -26,7 +26,7 @@ module.exports = (db) => {
     console.log("userPosts", body);
 
 
-    db.query(`SELECT users.name, posts.id, posts.summary, posts.opinion, books.title, books.author, categories.topic 
+    db.query(`SELECT users.name, posts.id, posts.summary, posts.opinion, books.title, books.author, books.cover_url, categories.topic 
     FROM users JOIN posts ON users.id=posts.user_id
     JOIN books ON posts.book_id=books.id 
     JOIN categories ON books.category_id=categories.id 
