@@ -33,14 +33,19 @@ module.exports = (db) => {
                     let book_pages = data.data.items[0].volumeInfo.pageCount;
                     db.query(`INSERT INTO books (category_id, title, author, pages, cover_url)
                             VALUES ($1, $2, $3, $4, $5) RETURNING books.id;`, [categoryId, post.title, post.author, book_pages, cover_url])
-                            .then(data => {
+                    .then(data => {
                       let bookId = data.rows[0].id
+                      db.query(`UPDATE users SET post_count = post_count + 1, page_count = page_count + $1
+                                WHERE users.id = $2 RETURNING *;`, [book_pages, post.user_id])
+                      .then(data => {
+                        console.log("After update post count:", data.rows[0]);
                       //Create the new post
-                      db.query(`INSERT INTO posts (user_id, book_id, summary, opinion)
-                                VALUES ($1, $2, $3, $4) RETURNING posts.id;`, [post.user_id, bookId, post.summary, post.opinion])
-                        .then(data => {
-                          res.json(data);
-                        })
+                        db.query(`INSERT INTO posts (user_id, book_id, summary, opinion)
+                                  VALUES ($1, $2, $3, $4) RETURNING posts.id;`, [post.user_id, bookId, post.summary, post.opinion])
+                          .then(data => {
+                            res.json(data);
+                          })
+                      })
                     })
                   } else {
                     //Create the new book with associated category id using default page/image data
@@ -48,12 +53,16 @@ module.exports = (db) => {
                             VALUES ($1, $2, $3) RETURNING books.id;`, [categoryId, post.title, post.author])
                             .then(data => {
                       let bookId = data.rows[0].id
+                      db.query(`UPDATE users SET post_count = post_count + 1
+                                WHERE users.id = $1;`, [post.user_id])
+                      .then(data => {
                       //Create the new post 
                       db.query(`INSERT INTO posts (user_id, book_id, summary, opinion)
                                 VALUES ($1, $2, $3, $4) RETURNING posts.id;`, [post.user_id, bookId, post.summary, post.opinion])
                         .then(data => {
                           res.json(data);
                         })
+                      })
                     })
                   }
                 })  
