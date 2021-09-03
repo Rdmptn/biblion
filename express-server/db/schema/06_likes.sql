@@ -4,4 +4,5 @@ CREATE TABLE likes (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   post_id INTEGER REFERENCES posts(id) ON DELETE CASCADE
+  CONSTRAINT no_duplicate_badges UNIQUE (user_id, post_id)
 );
