@@ -115,6 +115,7 @@ export default function SinglePost() {
       </article>
       <ul>
         <li>Post id: {post.id}</li>
+        <li><img src={post.cover_url}/></li>
         <li>Book Title: {post.title}</li>
         <li>Author: {post.author}</li>
         <li>Genre: {post.topic}</li>
