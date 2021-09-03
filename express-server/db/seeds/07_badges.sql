@@ -2,7 +2,7 @@ INSERT INTO
 badges(name, description, image)
 VALUES
     ('New User', 'Registered for a biblion account.', 'https://icons.iconarchive.com/icons/chrisl21/minecraft/48/Book-icon.png'),
-    ('First Post', '1 Book Read', 'https://icons.iconarchive.com/icons/chrisl21/minecraft/48/Book-icon.png'),
+    ('First Post', '1 Book Read', 'https://i.imgur.com/MJ4Ksw7.png'),
     ('Five Posts', '5 Books Read', 'https://icons.iconarchive.com/icons/chrisl21/minecraft/48/Book-icon.png'),
     ('Ten Posts', '10 Books Read', 'https://icons.iconarchive.com/icons/chrisl21/minecraft/48/Book-icon.png'),
     ('1000 Pages', 'Read 1000+ Pages', 'https://icons.iconarchive.com/icons/chrisl21/minecraft/48/Book-icon.png'),

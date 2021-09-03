@@ -33,7 +33,7 @@ module.exports = (db) => {
         db.query(`SELECT image FROM badges WHERE id = $1;`, [active_badge])
         .then(data => {
           profile.image = data.rows[0].image;
-          db.query(`SELECT badges.name, badges.image FROM badges 
+          db.query(`SELECT * FROM badges 
                     JOIN user_badges ON badges.id = user_badges.badge_id
                     WHERE user_id = $1;`, [body.id])
           .then(data => {

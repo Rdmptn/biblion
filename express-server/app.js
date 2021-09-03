@@ -23,6 +23,7 @@ var searchResultsRouter = require('./routes/searchResults');
 var profileRouter = require('./routes/profile');
 var searchPostsByCategoryRouter = require('./routes/searchPostsByCategory');
 var allPostsRouter = require('./routes/allPosts');
+var updateBadgeRouter = require('./routes/updateBadge');
 
 var app = express();
 
@@ -52,5 +53,6 @@ app.use('/searchResults', searchResultsRouter(db));
 app.use('/allPosts', allPostsRouter(db));
 app.use('/profile', profileRouter(db));
 app.use('/searchPostsByCategory', searchPostsByCategoryRouter(db));
+app.use('/updateBadge', updateBadgeRouter(db));
 
 module.exports = app;
