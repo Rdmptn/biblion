@@ -17,6 +17,7 @@ import SearchResults from './pages/SearchResults';
 import Profile from './pages/Profile';
 import SearchPostsByCategory from './pages/SearchPostsByCategory';
 import AllPosts from './pages/AllPosts';
+import SinglePost from './pages/SinglePost';
 
 
 import {
@@ -92,6 +93,10 @@ const App = () => {
             {!user_session ? <Redirect to="/login"/> : <AllPosts />}
           </Route>
         
+          <Route path="/Posts/:id">
+            {!user_session ? <Redirect to="/login"/> : <SinglePost />}
+          </Route>
+
           <Route path="/searchResults">
             <SearchResults searchTerm={searchTerm}/>
           </Route>
