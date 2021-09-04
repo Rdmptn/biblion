@@ -33,10 +33,32 @@ export default function Profile() {
   console.log("BADGES:", profile.unlocked_badges)
 
   return (
-    <div>
+    <div class="post_back">
       <h1>Profile</h1>
       {/* {<div>{JSON.stringify(profile)}</div>} */}
-      <ul>
+      <table class="table">
+        <tr>
+          <td class="tdata">
+              <ul>
+                <li><img src={profile.image} alt="Active Badge" /></li>
+                <li>Profile id: {profile.id}</li>
+                <li>Name: {profile.name}</li>
+                <li>Email: {profile.email}</li>
+              </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="tdata">
+              <ul>
+                <h4>Stats</h4>
+                <li>Books Read: {profile.post_count}</li>
+                <li>Pages Read: {profile.page_count}</li>
+                <li>Comments: {profile.comment_count}</li>
+              </ul>
+          </td>
+        </tr>
+      </table>
+      {/* <ul>
         <li><img src={profile.image} alt="Active Badge" /></li>
         <li>Profile id: {profile.id}</li>
         <li>Name: {profile.name}</li>
@@ -47,7 +69,7 @@ export default function Profile() {
         <li>Books Read: {profile.post_count}</li>
         <li>Pages Read: {profile.page_count}</li>
         <li>Comments: {profile.comment_count}</li>
-      </ul>
+      </ul> */}
       <h4>Unlocked Badges</h4>
        <form onSubmit={(event) => handleSubmit(event)}>
         {profile.unlocked_badges ? 

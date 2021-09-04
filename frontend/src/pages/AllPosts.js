@@ -8,16 +8,19 @@ import { Link } from "react-router-dom";
 export default function AllPosts() {
   const [posts, setPosts] = useState([]);
 
+  
+
   useEffect( () => {
     
     const user =JSON.parse(localStorage.getItem("user"));
     axios.get(`${api_url}${api_allPosts}`)
     .then(response => setPosts(response.data.posts))
   }, [])
+  
 
   return (
     
-   <div>
+   <div class="post_back">
           {/* {posts.map(post => 
             <ul>
               <li>Post id: {post.id}</li>
@@ -46,7 +49,7 @@ export default function AllPosts() {
                 {posts.map(post => 
                     <tr>
                         <td class="tdata"><ul>
-              <li>Post id: {post.id}</li>
+              {/* <li>Post id: {post.id}</li> */}
               <li>Poster's Name: {post.name}</li>
               <li><img src={post.cover_url}/></li>
               <li>Book Title: {post.title}</li>

@@ -114,7 +114,7 @@ export default function SinglePost() {
   }
 
   return (
-    <div>
+    <div class="post_back">
       {/* <article>
         {id}
       </article> */}
@@ -122,7 +122,7 @@ export default function SinglePost() {
         <tr>
           <td class="tdata">
               <ul>
-                <li>Post id: {post.id}</li>
+                {/* <li>Post id: {post.id}</li> */}
                 <li><img src={post.cover_url}/></li>
                 <li>Book Title: {post.title}</li>
                 <li>Author: {post.author}</li>

@@ -55,7 +55,7 @@ export default function SearchPostsByCategory() {
 
   if (categorySelected) {
     return (
-      <div>
+      <div class="post_back">
           {/* {posts.map(post => 
             <ul>
               <li>Post id: {post.id}</li>
@@ -80,7 +80,7 @@ export default function SearchPostsByCategory() {
                 {posts.map(post => 
                     <tr>
                         <td class="tdata"><ul>
-              <li>Post id: {post.id}</li>
+              {/* <li>Post id: {post.id}</li> */}
               <li>Poster's Name: {post.name}</li>
               <li><img src={post.cover_url}/></li>
               <li>Book Title: {post.title}</li>
@@ -101,17 +101,26 @@ export default function SearchPostsByCategory() {
   } 
 
   return (
-    <form  onSubmit={(event) => handleSubmit(event)}>
-      <label>
-        Genre:
-      <select id="genre" name="genre" onChange={handleChangeGenre}>
-        <option value="drama">Drama</option>
-        <option value="comedy">Comedy</option>
-        <option value="tragedy">Tragedy</option>
-      </select>
-      </label>
-      <input type="submit" value="Submit" />
-    </form>
+    <html>
+      <body class="back_post">
+          <div class="post_back">
+              <form  onSubmit={(event) => handleSubmit(event)}>
+                  <label>
+                    Genre:
+                  <select id="genre" name="genre" onChange={handleChangeGenre}>
+                    <option value="drama">Drama</option>
+                    <option value="comedy">Comedy</option>
+                    <option value="tragedy">Tragedy</option>
+                  </select>
+                  </label>
+                  <input type="submit" value="Submit" />
+              </form>
+          </div>
+      </body>
+       
+    </html>
+    
+    
 )
 
   

@@ -21,7 +21,7 @@ export default function SearchResults(props) {
   
   
     return (
-      <div>
+      <div class="post_back">
         {/* <h1> Search Results for "{searchTerm}" </h1>
           {posts.length > 0 
             ? 
@@ -46,8 +46,8 @@ export default function SearchResults(props) {
                 <tr>
                  <td class="tdata">
                   <ul>
-                    <li>Post id: {post.id}</li>
-                    <li>Poster's Name: {post.name}</li>
+                    {/* <li>Post id: {post.id}</li> */}
+                    {/* <li>Poster's Name: {post.name}</li> */}
                     <li><img src={post.cover_url}/></li>
                     <li>Book Title: {post.title}</li>
                     <li>Author: {post.author}</li>

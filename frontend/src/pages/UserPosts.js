@@ -18,7 +18,7 @@ export default function UserPosts() {
   }, [])
 
   return (
-      <div>
+      <div class="post_back">
           {/* {posts.map(post => 
             <ul>
               <li>Post id: {post.id}</li>
@@ -43,7 +43,7 @@ export default function UserPosts() {
                 {posts.map(post => 
                     <tr>
                         <td class="tdata"><ul>
-              <li>Post id: {post.id}</li>
+              {/* <li>Post id: {post.id}</li> */}
               <li>Poster's Name: {post.name}</li>
               <li><img src={post.cover_url}/></li>
               <li>Book Title: {post.title}</li>
