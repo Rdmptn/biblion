@@ -37,7 +37,7 @@ export default function Profile() {
       <h1>Profile</h1>
       {/* {<div>{JSON.stringify(profile)}</div>} */}
       <ul>
-        <li><img src={profile.image} /></li>
+        <li><img src={profile.image} alt="Active Badge" /></li>
         <li>Name: {profile.name}</li>
         <li>Email: {profile.email}</li>
       </ul>
@@ -51,13 +51,13 @@ export default function Profile() {
        <form onSubmit={(event) => handleSubmit(event)}>
         {profile.unlocked_badges ? 
 
-          profile.unlocked_badges.map(badge =>  
-          <div>
+          profile.unlocked_badges.map(badge => 
+          <div key={badge.id}>
             <div>
               <div>
-                <img src={badge.image}/>
+                <img src={badge.image} alt={badge.description}/>
               </div>
-              <label for={badge.name}>{badge.name}</label>
+              <label>{badge.name}</label>
             </div>
             <span>
               <input type="radio" name="badge" value={badge.badge_id} onChange={handleChangeBadge}/>
