@@ -107,6 +107,11 @@ export default function SinglePost() {
     })
     .catch(error => console.log(error))
   }
+  
+  const amazonRedirect = function(post) {
+    const url = "https://www.amazon.ca/s?k=" + post.title + "&i=stripbooks";
+    window.open(url)
+  }
 
   return (
     <div>
@@ -122,6 +127,11 @@ export default function SinglePost() {
         <li>Summary: {post.summary}</li>
         <li>Opinion: {post.opinion}</li>
       </ul>
+      <div>
+      <a href="#" onClick={amazonRedirect(post)}>
+        <img src="https://wplov.in/wp-content/uploads/download-300x101-1.png" alt="Buy now on amazon" width="200px"/>
+      </a>
+      </div>
       <div>
         {likesCount}Likes
       </div>
