@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  padding-top: 80px;
 }
 
 /* .App-logo { */
@@ -40,8 +41,3 @@
 .btn-outline-success {
   margin-left: 10px;
 }
-
-.toggler-button {
-  margin-left: 10px;
-}
-
