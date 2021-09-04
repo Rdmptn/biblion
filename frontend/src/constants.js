@@ -7,6 +7,7 @@ export const api_search = "/searchResults";
 export const api_allPosts = "/allPosts";
 export const api_profile = "/profile";
 export const api_searchPostsByCategory = "/searchPostsByCategory";
+export const api_update_badge = "/updateBadge";
 export const api_singlePost = "/singlePost";
 export const api_singlePostComments = "/singlePostComments";
 export const api_createComment = "/createComment";
