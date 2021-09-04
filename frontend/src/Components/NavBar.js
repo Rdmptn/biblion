@@ -19,14 +19,6 @@ export const NavBar = (props) => {
     window.location.reload();
   }
   
-  const register = function() {
-    window.location.replace("/register");
-  }
-  
-  const login = function() {
-    window.location.replace("/login");
-  }
-  
   const handleSubmit = function(event) {
     event.preventDefault();
     window.location.replace("/searchResults");
@@ -68,6 +60,10 @@ export const NavBar = (props) => {
                   <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                       <ul class="navbar-nav ms-auto">
                           <li class="nav-item">
+                            {props.user.email}
+                            <img src={profile.image} alt="Active Badge" />
+                          </li>
+                          <li class="nav-item">
                               <a class="nav-link" href="/create">New Post</a>
                           </li>
                           <li class="nav-item">
@@ -77,7 +73,7 @@ export const NavBar = (props) => {
                               <a class="nav-link" href="/profile">Profile</a>
                           </li>
                           <li class="nav-item">
-                              <button class="btn btn-outline-success" onClick={() => logout()}>Logout</button>
+                              <a class="nav-link" href="#" onClick={() => logout()}>Logout</a>
                           </li>
                       </ul>
                   </div>
@@ -85,10 +81,12 @@ export const NavBar = (props) => {
                    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                       <ul class="navbar-nav ms-auto">
                           <li class="nav-item">
-                              <button class="btn btn-outline-success" onClick={() => register()}>Register</button>
+                               <a class="nav-link" href="/register">Register</a>
+                              
                           </li>
                           <li class="nav-item">
-                              <button class="btn btn-outline-success" onClick={() => login()}>Login</button>
+                               <a class="nav-link" href="/login">Login</a>
+                             
                           </li>
                       </ul>
                   </div>
@@ -101,6 +99,8 @@ export const NavBar = (props) => {
 }
 export default NavBar;
 
+// <button class="btn btn-outline-success" onClick={() => register()}>Register</button>
+ // <button class="btn btn-outline-success" onClick={() => login()}>Login</button>
 
 
   // <div>
