@@ -38,6 +38,7 @@ export default function Profile() {
       {/* {<div>{JSON.stringify(profile)}</div>} */}
       <ul>
         <li><img src={profile.image} alt="Active Badge" /></li>
+        <li>Profile id: {profile.id}</li>
         <li>Name: {profile.name}</li>
         <li>Email: {profile.email}</li>
       </ul>

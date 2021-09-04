@@ -15,6 +15,7 @@ export default function Create(props) {
     axios.post(`${api_url}${api_create}`, post)
     .then((response) => {
       console.log("response.data___+++:::", response.data); 
+      window.location.replace(`/Posts/${response.data.rows[0].id}`);
     })
     .catch(error => console.log(error))
   }
