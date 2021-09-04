@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+.table .tdata {
+  border: 10px solid black;
+  border-collapse: none;
+  border-width: 10px;
+}

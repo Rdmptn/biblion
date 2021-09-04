@@ -115,10 +115,25 @@ export default function SinglePost() {
 
   return (
     <div>
-      <article>
+      {/* <article>
         {id}
-      </article>
-      <ul>
+      </article> */}
+      <table class="table">
+        <tr>
+          <td class="tdata">
+              <ul>
+                <li>Post id: {post.id}</li>
+                <li><img src={post.cover_url}/></li>
+                <li>Book Title: {post.title}</li>
+                <li>Author: {post.author}</li>
+                <li>Genre: {post.topic}</li>
+                <li>Summary: {post.summary}</li>
+                <li>Opinion: {post.opinion}</li>
+              </ul>
+          </td>
+        </tr>
+      </table>
+      {/* <ul>
         <li>Post id: {post.id}</li>
         <li><img src={post.cover_url}/></li>
         <li>Book Title: {post.title}</li>
@@ -126,7 +141,7 @@ export default function SinglePost() {
         <li>Genre: {post.topic}</li>
         <li>Summary: {post.summary}</li>
         <li>Opinion: {post.opinion}</li>
-      </ul>
+      </ul> */}
       <div>
       <a href="#" onClick={() => {amazonRedirect(post)}}>
         <img src="https://wplov.in/wp-content/uploads/download-300x101-1.png" alt="Buy now on amazon" width="200px"/>
@@ -138,14 +153,37 @@ export default function SinglePost() {
       <div>
         <button onClick={addLike}>Like</button>
       </div>
-      <div>
+      {/* <div>
         {comments.map(comment => 
           <ul>
             <li>Comment id: {comment.id}</li>
             <li>Comment Message: {comment.message}</li>
           </ul>
         )}   
-      </div> 
+      </div>  */}
+      <div>
+        <table class="table">
+                  <thead>
+                      <tr>
+                          <th ><h2>The Comments For This Post</h2></th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                  {comments.map(comment => 
+            <tr>
+              <td class="tdata">
+                  <ul>
+                    <li>Comment id: {comment.id}</li>
+                    <li>Comment Message: {comment.message}</li>
+                  
+                  </ul>
+                </td>
+
+              </tr>
+                      )}
+                  </tbody>
+          </table>
+      </div>
       <div>
         <form  onSubmit={(event) => handleSubmit(event)}>
           <label>
