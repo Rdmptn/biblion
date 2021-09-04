@@ -128,7 +128,7 @@ export default function SinglePost() {
         <li>Opinion: {post.opinion}</li>
       </ul>
       <div>
-      <a href="#" onClick={amazonRedirect(post)}>
+      <a href="#" onClick={() => {amazonRedirect(post)}}>
         <img src="https://wplov.in/wp-content/uploads/download-300x101-1.png" alt="Buy now on amazon" width="200px"/>
       </a>
       </div>
