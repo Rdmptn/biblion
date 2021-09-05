@@ -50,7 +50,7 @@ export const NavBar = (props) => {
                   <form class="input-group inline-form" onSubmit={(event) => handleSubmit(event)}>
                       <input type="search" class="form-control" placeholder="Search Book Title or Author:" aria-label="Search" size="150" onChange={handleChangeSearch}/>
                       <span class="input-group-btn">
-                          <button class="btn btn-outline-success" type="submit">Search</button>
+                          <button class="btn btn-success" type="submit">Search</button>
                       </span>
                       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".dual-collapse2">
                           <span class="navbar-toggler-icon"></span>

@@ -46,23 +46,31 @@ export default function Register() {
     }))
   }
   return (
-    <div>
-        <form  onSubmit={(event) => handleSubmit(event)}>
-          <label>
-            Name:
-            <input type="text" name="name" onChange={handleChangeName}/>
-          </label>
-          <label>
-            email:
-            <input type="email" name="email" onChange={handleChangeEmail}/>
-          </label>
-          <label>
-            Password:
-            <input type="password" name="password" onChange={handleChangePassword}/>
-          </label>
-          <input type="submit" value="Submit" />
+  
+    <div class="main-content-container"> 
+      <header class="page-header">
+          <h1>Register</h1>
+      </header>
+      <div class="card border-success mb-3 text-white bg-dark login-card">
+        <form onSubmit={(event) => handleSubmit(event)}>
+          <div class="form-group">
+            <label for="exampleInputName"><h5>Name</h5></label>
+            <input type="text" class="form-control non-nav-input" id="exampleInputName" aria-describedby="nameHelp" placeholder="Enter name" onChange={handleChangeName}/>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1"><h5>Email address</h5></label>
+            <input type="email" class="form-control non-nav-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={handleChangeEmail}/>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1"><h5>Password</h5></label>
+            <input type="password" class="form-control non-nav-input" id="exampleInputPassword1" placeholder="Password" onChange={handleChangePassword}/>
+          </div>
+          <button type="submit" class="btn btn-success">Submit</button>
         </form>
+      </div>
     </div>
+  
+
         
   )
 }

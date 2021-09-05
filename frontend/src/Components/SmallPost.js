@@ -13,7 +13,7 @@ export const SmallPost = (post) => {
             <h6 class="card-title">Posted By: <img src={post.image} width="24px"/> {post.name}</h6>
             <p class="card-text">{post.summary}</p>
             <p class="card-text">{post.opinion}</p>
-            <a href={`/Posts/${post.id}`} class="btn btn-outline-success">View Post Details</a>
+            <a href={`/Posts/${post.id}`} class="btn btn-success">View Post Details</a>
           </div>
         </div>
       </div>

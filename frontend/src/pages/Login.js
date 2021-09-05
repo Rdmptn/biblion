@@ -59,7 +59,7 @@ export default function Login() {
             <label for="exampleInputPassword1"><h5>Password</h5></label>
             <input type="password" class="form-control non-nav-input" id="exampleInputPassword1" placeholder="Password" onChange={handleChangePassword}/>
           </div>
-          <button type="submit" class="btn btn-outline-success">Submit</button>
+          <button type="submit" class="btn btn-success">Submit</button>
         </form>
       </div>
     </div>
