@@ -1,5 +1,5 @@
 .App {
-  padding-top: 80px;
+  padding-top: 56px;
   padding-bottom: 30px;
   
 }
@@ -50,6 +50,7 @@ div .main-content-container{
   margin: 0 auto;
   padding-left: 10px;
   padding-right: 10px;
+  padding-top: 24px;
 }
 
 .page-header {
