@@ -9,8 +9,8 @@ export const SmallPost = (post) => {
         </div>
         <div class="col-md-9">
           <div class="card-body">
-            <h5 class="card-title">{post.title} by {post.author}</h5>
-            <h6 class="card-title">Posted By: {post.name}</h6>
+            <h5 class="card-title">{post.title} by {post.author} — <i>{post.topic}</i></h5>
+            <h6 class="card-title">Posted By: <img src={post.image} width="24px"/> {post.name}</h6>
             <p class="card-text">{post.summary}</p>
             <p class="card-text">{post.opinion}</p>
             <a href={`/Posts/${post.id}`} class="btn btn-outline-success">View Post Details</a>
