@@ -20,7 +20,7 @@ export default function Register() {
         
       setIsRegistered(true);
       // window.location.reload();
-      window.history.back();
+      window.location.replace("/");
     }
   })
     .catch(error => console.log(error))

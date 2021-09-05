@@ -5,6 +5,7 @@ import axios from "axios";
 import './App.css';
 import NavBar from './Components/NavBar';
 import useApplicationData from "./hooks/useApplicationData.js";
+import useProfileData from "./hooks/useProfileData.js";
 // import classNames from "classnames";
 // import Application from "components/Application";
 // import Register from "./pages/Register"
@@ -46,14 +47,6 @@ const App = () => {
       // setCurrentUser(response.data);
     setCurrentUser(user_session);
   }, [])
- 
-
-  //useEffect(() => {
-    //   axios.get(`${api_url}/user/current`).then((response) => {if (response.status === 200) {
-    //     console.log("data", response.data);
-    //     setCurrentUser(response.data);
-    //   }})
-    // }, [])
 
     // console.log("currentuser", currentUser);
     const user = state.users.find(user => currentUser === user.id);
@@ -61,7 +54,7 @@ const App = () => {
     
   return (
     <div>
-      <NavBar currentUser={currentUser} user={currentUser}/>
+      <NavBar profile={profile} currentUser={currentUser} user={currentUser}/>
       <Router>
       <div className="App" >
         
