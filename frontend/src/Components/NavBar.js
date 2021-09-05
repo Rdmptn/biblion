@@ -13,6 +13,8 @@ import { api_url, api_search } from "../constants";
 export const NavBar = (props) => {
   
   let searchTerm = "";
+  
+  console.log("PROPS:", props);
  
   const logout = function() {
     localStorage.setItem("user", null)
@@ -60,8 +62,8 @@ export const NavBar = (props) => {
                   <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                       <ul class="navbar-nav ms-auto">
                           <li class="nav-item">
-                            {props.user.email}
-                            <img src={profile.image} alt="Active Badge" />
+                              <span class="logged-in-name">{props.profile.name}</span>
+                              <span><img class="logged-in-badge" src={props.profile.image}  width="40px"/></span>
                           </li>
                           <li class="nav-item">
                               <a class="nav-link" href="/create">New Post</a>
