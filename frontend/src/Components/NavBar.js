@@ -18,7 +18,7 @@ export const NavBar = (props) => {
  
   const logout = function() {
     localStorage.setItem("user", null)
-    window.location.reload();
+    window.location.replace("/");
   }
   
   const handleSubmit = function(event) {
