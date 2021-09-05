@@ -6,34 +6,9 @@ import { Link } from "react-router-dom";
 import SmallPost from "../Components/SmallPost";
 
 
-
-// export default function UserPosts() {
-//   const [posts, setPosts] = useState([]);
-
-//   useEffect( () => {
-    
-//     const user =JSON.parse(localStorage.getItem("user"));
-//     axios.get(`${api_url}${api_userPosts}/${user.id}`)
-//     .then(response => setPosts(response.data.posts))
-//   }, [])
-
-//   return (
-//     <div>
-//       {posts.map(post => <div>{JSON.stringify(post)}</div>)}
-//     </div>
-//   )          
-  
-// }
-
-
 export default function SearchPostsByCategory() {
-  // let currentUser = props.currentUser; 
-  // let post = {};
-  // post.user_id = currentUser.id;
-  // post.genre = "drama";
+
   const [posts, setPosts] = useState([]);
-  // let topic = "";
-  // let categorySelected = false;
   const [categorySelected, setCategorySelected] = useState(false);
   const [topic, setTopic] = useState("drama");
   const [selectedTopic, setSelectedTopic] = useState("");

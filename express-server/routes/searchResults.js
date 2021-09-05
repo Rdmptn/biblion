@@ -22,7 +22,6 @@ module.exports = (db) => {
                 let postResults = data.rows;
                 for (let postResult of postResults) {
                   let post_id = postResult.id;
-                  // db.query(`SELECT * FROM posts WHERE posts.id = $1;`, [post_id])
                   db.query(`SELECT users.name, posts.id, posts.summary, posts.opinion, books.title, books.author, books.cover_url, categories.topic, badges.image
                             FROM users JOIN posts on users.id = posts.user_id 
                             JOIN books ON posts.book_id=books.id 
