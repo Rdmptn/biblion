@@ -31,6 +31,7 @@ import {
 const App = () => {
 
   const { state, dispatch } = useApplicationData();
+  const profile = useProfileData();
   const [currentUser, setCurrentUser] = useState({});
   // console.log("state======", state);
   let user_session = localStorage.getItem("user");
