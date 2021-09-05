@@ -53,6 +53,7 @@ export default function Register() {
     }))
   }
   return (
+    <div>
         <form  onSubmit={(event) => handleSubmit(event)}>
           <label>
             Name:
@@ -68,6 +69,8 @@ export default function Register() {
           </label>
           <input type="submit" value="Submit" />
         </form>
+    </div>
+        
   )
 }
 

@@ -51,10 +51,12 @@ export default function SearchPostsByCategory() {
     setTopic(event.target.value);
   }
   
+  const Topic = topic.charAt(0).toUpperCase() + topic.slice(1);
+
   if (categorySelected) {
     return (
-      <div>
-          {posts.map(post => 
+      <div class="post_back">
+          {/* {posts.map(post => 
             <ul>
               <li>Post id: {post.id}</li>
               <li>Poster's Name: {post.name}</li>
@@ -66,24 +68,59 @@ export default function SearchPostsByCategory() {
               <li>Opinion: {post.opinion}</li>
               <li><Link to={`/Posts/${post.id}`}>View Post Details</Link></li>
             </ul>
-          )}
+          )} */}
           
+          <table class="table">
+                <thead>
+                    <tr>
+                        <th ><h2>All Posts For The Genre {Topic}</h2></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {posts.map(post => 
+                    <tr>
+                        <td class="tdata"><ul>
+              {/* <li>Post id: {post.id}</li> */}
+              <li>Poster's Name: {post.name}</li>
+              <li><img src={post.cover_url}/></li>
+              <li>Book Title: {post.title}</li>
+              <li>Author: {post.author}</li>
+              <li>Genre: {post.topic}</li>
+              <li>Summary: {post.summary}</li>
+              <li>Opinion: {post.opinion}</li>
+              <li><Link to={`/Posts/${post.id}`}>View Post Details</Link></li>
+              
+            </ul></td>
+
+                    </tr>
+                    )}
+                </tbody>
+              </table>
       </div> 
     )
   } 
 
   return (
-    <form  onSubmit={(event) => handleSubmit(event)}>
-      <label>
-        Genre:
-      <select id="genre" name="genre" onChange={handleChangeGenre}>
-        <option value="drama">Drama</option>
-        <option value="comedy">Comedy</option>
-        <option value="tragedy">Tragedy</option>
-      </select>
-      </label>
-      <input type="submit" value="Submit" />
-    </form>
+    <html>
+      <body class="back_post">
+          <div class="post_back">
+              <form  onSubmit={(event) => handleSubmit(event)}>
+                  <label>
+                    Genre:
+                  <select id="genre" name="genre" onChange={handleChangeGenre}>
+                    <option value="drama">Drama</option>
+                    <option value="comedy">Comedy</option>
+                    <option value="tragedy">Tragedy</option>
+                  </select>
+                  </label>
+                  <input type="submit" value="Submit" />
+              </form>
+          </div>
+      </body>
+       
+    </html>
+    
+    
 )
 
   

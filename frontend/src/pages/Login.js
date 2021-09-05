@@ -44,7 +44,8 @@ export default function Login() {
   }
   
   return (
-        <form onSubmit={(event) => handleSubmit(event)}>
+    <div> 
+       <form onSubmit={(event) => handleSubmit(event)}>
           <label>
             email:
             <input type="email" name="email" onChange={handleChangeEmail}/>
@@ -55,5 +56,7 @@ export default function Login() {
           </label>
           <input type="submit" value="Submit" />
         </form>
+    </div>
+        
   )
 }
