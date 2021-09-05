@@ -46,8 +46,10 @@
 }
 
 div .small-post-container{
-  max-width: 800px;
+  max-width: 820px;
   margin: 0 auto;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .page-header {
