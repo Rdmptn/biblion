@@ -1,45 +1,11 @@
 .App {
-  text-align: center;
   padding-top: 80px;
+  padding-bottom: 30px;
+  
 }
 
-/* .App-logo { */
-  /* height: 40vmin; */
-  /* pointer-events: none; */
-/* } */
-
-/* @media (prefers-reduced-motion: no-preference) { */
-  /* .App-logo { */
-    /* animation: App-logo-spin infinite 20s linear; */
-  /* } */
-/* } */
-
-/* .App-header { */
-  /* background-color: #282c34; */
-  /* min-height: 100vh; */
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* font-size: calc(10px + 2vmin); */
-  /* color: white; */
-/* } */
-
-/* .App-link { */
-  /* color: #61dafb; */
-/* } */
-
-/* @keyframes App-logo-spin { */
-  /* from { */
-    /* transform: rotate(0deg); */
-  /* } */
-  /* to { */
-    /* transform: rotate(360deg); */
-  /* } */
-/* } */
-
-.btn-outline-success {
-  margin-left: 10px;
+.form-control {
+  margin-right: 10px;
 }
 
 .logged-in-badge {
@@ -59,4 +25,32 @@
 
 .post_back {
   background-color: tomato;
+}
+
+.card {
+  margin: 0 auto;
+}
+
+.small-post-card {
+  max-width: 800px;
+  text-align: left;
+}
+
+.rounded-start {
+  margin-left: 20px;
+  margin-top: 8px;
+}
+
+.container {
+  max-width: 800px;
+}
+
+div .small-post-container{
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.page-header {
+  border-bottom: 3px solid #1e8355;
+  margin-bottom: 24px;
 }
