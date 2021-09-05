@@ -51,7 +51,7 @@ export default function UserPosts() {
               <li>Genre: {post.topic}</li>
               <li>Summary: {post.summary}</li>
               <li>Opinion: {post.opinion}</li>
-              <li><Link to={`/Posts/${post.id}`}>View Post Details</Link></li>
+              <li><Link to={`/MyPosts/${post.id}`}>View Your Post's Details and/or Edit and/or Delete It</Link></li>
               
             </ul></td>
 

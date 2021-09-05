@@ -19,6 +19,7 @@ import Profile from './pages/Profile';
 import SearchPostsByCategory from './pages/SearchPostsByCategory';
 import AllPosts from './pages/AllPosts';
 import SinglePost from './pages/SinglePost';
+import MySinglePost from './pages/MySinglePost';
 
 
 import {
@@ -89,6 +90,10 @@ const App = () => {
         
           <Route path="/Posts/:id">
             {!user_session ? <Redirect to="/login"/> : <SinglePost />}
+          </Route>
+
+          <Route path="/MyPosts/:id">
+            {!user_session ? <Redirect to="/login"/> : <MySinglePost />}
           </Route>
 
           <Route path="/searchResults">
