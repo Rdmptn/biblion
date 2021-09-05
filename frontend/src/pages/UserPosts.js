@@ -22,9 +22,13 @@ export default function UserPosts() {
         <header class="page-header">
           <h1>My Posts</h1>
         </header>
-        {posts.map(post => 
+        {posts.length > 0
+          ? 
+        posts.map(post => 
           SmallPost(post)
-        )}
+        )
+        :
+       <h4>You haven't created any posts yet, consider creating a post <a href="/create"><i>here</i></a>.</h4>}
       </div>
     
   )   
