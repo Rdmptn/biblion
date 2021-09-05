@@ -21,7 +21,7 @@ export default function AllPosts() {
 
   return (
   
-      <div class="small-post-container">
+      <div class="main-content-container">
         <header class="page-header">
           <h1>All Posts</h1>
         </header>
@@ -30,7 +30,6 @@ export default function AllPosts() {
         )}
       </div>
     
-
   )          
   
 }
