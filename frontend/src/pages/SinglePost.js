@@ -163,6 +163,15 @@ export default function SinglePost() {
       </div>  */}
       <div>
         <table class="table">
+         <div>
+        <form  onSubmit={(event) => handleSubmit(event)}>
+          <label>
+            Enter Your Comment:
+            <input type="text" name="comment" onChange={handleChangeComment}/>
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
                   <thead>
                       <tr>
                           <th ><h2>The Comments For This Post</h2></th>
@@ -184,15 +193,7 @@ export default function SinglePost() {
                   </tbody>
           </table>
       </div>
-      <div>
-        <form  onSubmit={(event) => handleSubmit(event)}>
-          <label>
-            Enter Your Comment:
-            <input type="text" name="comment" onChange={handleChangeComment}/>
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
-      </div>
+     
     </div>
     
   )

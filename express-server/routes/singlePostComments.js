@@ -27,7 +27,7 @@ module.exports = (db) => {
 
     db.query(`SELECT comments.id, comments.message 
     FROM posts JOIN comments ON posts.id=comments.post_id 
-    WHERE posts.id = $1;`, [body.id])
+    WHERE posts.id = $1 ORDER BY comments.id DESC;`, [body.id])
       .then(data => {
         console.log(data.rows[0]);
         // req.session.user_id = data.rows[0].id;
