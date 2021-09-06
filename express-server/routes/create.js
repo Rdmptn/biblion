@@ -115,7 +115,7 @@ module.exports = (db) => {
                       let bookId = data.rows[0].id
                       //Update user stats
                       db.query(`UPDATE users SET post_count = post_count + 1
-                                WHERE users.id = $1;`, [post.user_id])
+                                WHERE users.id = $1 RETURNING *;`, [post.user_id])
                       .then(data => {
                         badgeChecker(data);
                       //Create the new post 

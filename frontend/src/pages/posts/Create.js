@@ -49,32 +49,72 @@ export default function Create(props) {
   // console.log(genreOptions.value);
   
   return (
-        <form  onSubmit={(event) => handleSubmit(event)}>
-          <label>
-            Book Title:
-            <input type="text" name="title" onChange={handleChangeTitle}/>
-          </label>
-          <label>
-            Author:
-            <input type="text" name="Author" onChange={handleChangeAuthor}/>
-          </label>
-          <label>
-            Genre:
-          <select id="genre" name="genre" onChange={handleChangeGenre}>
-            <option value="drama">Drama</option>
-            <option value="comedy">Comedy</option>
-            <option value="tragedy">Tragedy</option>
-          </select>
-          </label>
-          <label>
-            Summary:
-            <input type="textarea" name="summary" onChange={handleChangeSummary}/>
-          </label>
-          <label>
-            Opinion:
-            <input type="text" name="opinion" onChange={handleChangeOpinion}/>
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
+  
+      <div class="main-content-container"> 
+          <header class="page-header">
+              <h1>Create a New Post</h1>
+          </header>
+          <div class="card border-success mb-3 text-white bg-dark login-card">
+            <form onSubmit={(event) => handleSubmit(event)}>
+              <div class="form-group">
+                <label for="title"><h5>Title</h5></label>
+                <input type="text" class="form-control non-nav-input" id="title" aria-describedby="nameHelp" placeholder="Enter name" onChange={handleChangeTitle}/>
+              </div>
+              <div class="form-group">
+                <label for="author"><h5>Author</h5></label>
+                <input type="text" class="form-control non-nav-input" id="author" aria-describedby="emailHelp" placeholder="Enter email" onChange={handleChangeAuthor}/>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlSelect1"><h5>Genre</h5></label>
+                <select multiple class="form-control" id="exampleFormControlSelect1">
+                  <option value="drama" selected>Drama</option>
+                  <option value="comedy">Comedy</option>
+                  <option value="tragedy">Tragedy</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="summary"><h5>Summary</h5></label>
+                <textarea class="form-control" id="summary" rows="3" placeholder="Enter a brief summary of the book." onChange={handleChangeSummary}></textarea>
+              </div>
+              <div class="form-group">
+                <label for="opinion"><h5>Opinion</h5></label>
+                <input type="text" class="form-control non-nav-input" id="opinion" 
+                  placeholder="Enter a one or two sentence opinion on what you thought of the book." onChange={handleChangeOpinion}/>
+              </div>
+              <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+          </div>
+        </div>
+    
+        
   )
 }
+
+
+// <form  onSubmit={(event) => handleSubmit(event)}>
+          // <label>
+            // Book Title:
+            // <input type="text" name="title" onChange={handleChangeTitle}/>
+          // </label>
+          // <label>
+            // Author:
+            // <input type="text" name="Author" onChange={handleChangeAuthor}/>
+          // </label>
+          // <label>
+            // Genre:
+          // <select id="genre" name="genre" onChange={handleChangeGenre}>
+            // <option value="drama">Drama</option>
+            // <option value="comedy">Comedy</option>
+            // <option value="tragedy">Tragedy</option>
+          // </select>
+          // </label>
+          // <label>
+            // Summary:
+            // <input type="textarea" name="summary" onChange={handleChangeSummary}/>
+          // </label>
+          // <label>
+            // Opinion:
+            // <input type="text" name="opinion" onChange={handleChangeOpinion}/>
+          // </label>
+          // <input type="submit" value="Submit" />
+        // </form>
