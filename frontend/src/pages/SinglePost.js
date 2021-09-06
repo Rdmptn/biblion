@@ -184,8 +184,7 @@ export default function SinglePost() {
             <tr>
               <td class="tdata">
                   <ul>
-                    <li><img src={comment.image} width="24"/> {comment.name}</li>
-                    <li>{format(comment.created_at)}</li>
+                    <li>Posted By: <img src={comment.image} width="24px"/> {comment.name} — {format(comment.created_at)}</li>
                     <li>Comment Message: {comment.message}</li>
                   
                   </ul>
