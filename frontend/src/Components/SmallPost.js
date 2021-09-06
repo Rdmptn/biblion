@@ -26,3 +26,13 @@ export const SmallPost = (post) => {
 }
 
 export default SmallPost;
+
+
+
+// For adding comment/like counts to right side of small post if time permits
+
+ // <div class="col-sm-1">
+          // <div class="card-body">
+            // <h5 class="card-title"></h5>
+          // </div>
+        // </div>
