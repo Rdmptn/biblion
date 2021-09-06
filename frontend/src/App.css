@@ -4,6 +4,10 @@
   
 }
 
+.navbar {
+  border-bottom: 1px solid #1e8355;
+}
+
 .form-control {
   margin-right: 10px;
 }
@@ -56,4 +60,12 @@ div .main-content-container{
 .page-header {
   border-bottom: 3px solid #1e8355;
   margin-bottom: 24px;
+}
+
+.non-nav-input {
+  margin-bottom: 10px;
+}
+
+.login-card {
+  padding: 10px;
 }
