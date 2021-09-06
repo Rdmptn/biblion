@@ -8,7 +8,7 @@ export default function Create(props) {
   let currentUser = props.currentUser; 
   let post = {};
   post.user_id = currentUser.id;
-  post.genre = "drama";
+  post.genre = "Adventure";
 
   const handleSubmit = function(event) {
     event.preventDefault();
@@ -59,7 +59,7 @@ export default function Create(props) {
               <div class="form-group">
                 <label for="exampleFormControlSelect1"><h5>Genre</h5></label>
                 <select multiple class="form-control non-nav-input" id="exampleFormControlSelect1">
-                  <option value="drama" selected>Drama</option>
+                  <option value="Adventure" selected>Adventure</option>
                   {categoryArray.map(genre =>
                     <option value={genre}>{genre}</option>
                   )}

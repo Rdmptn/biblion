@@ -2,11 +2,29 @@ INSERT INTO
 categories(topic)
 VALUES
     (
-        'drama'
+        'Adventure'
     ),
     (
-        'comedy'
+        'Fantasy'
     ),
     (
-        'tragedy'
+        'Horror'
+    ),
+    (
+        'Manga'
+    ),
+    (
+        'Mystery'
+    ),
+    (
+        'Nonfiction'
+    ),
+    (
+        'Romance'
+    ),
+    (
+        'Science Fiction'
+    ),
+    (
+        'Thriller'
     );

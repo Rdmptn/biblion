@@ -9,7 +9,7 @@ import useProfileData from "./hooks/useProfileData.js";
 // import classNames from "classnames";
 // import Application from "components/Application";
 // import Register from "./pages/Register"
-import Test from "./pages/Test"
+import Home from "./pages/Home"
 import Register from "./pages/Register"
 import Login from "./pages/Login"
 import Create from "./pages/posts/Create"
@@ -54,11 +54,20 @@ const App = () => {
     // console.log("user", user);
     
   return (
+  
     <div>
       <NavBar profile={profile} currentUser={currentUser} user={currentUser}/>
       <Router>
-      <div className="App" >
-        
+      <div className="App">
+      
+          <Route exact path="/">
+            <Redirect to="/home"/>
+          </Route>
+          
+          <Route path="/home">
+            <Home />
+          </Route>
+      
           <Route path="/register">
             {!user_session ? <Register /> : <Redirect to="/"/>}
           </Route> 
@@ -97,6 +106,7 @@ const App = () => {
         
       </div >
       </Router>
+      
     </div>
     
   );

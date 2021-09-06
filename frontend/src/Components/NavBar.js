@@ -11,14 +11,14 @@ import axios from "axios";
 import { api_url, api_search } from "../constants";
 
 export const NavBar = (props) => {
-  
+
   let searchTerm = "";
   
   console.log("PROPS:", props);
  
   const logout = function() {
     localStorage.setItem("user", null)
-    window.location.replace("/");
+    window.location.replace("/home");
   }
   
   const handleSubmit = function(event) {
@@ -36,7 +36,7 @@ export const NavBar = (props) => {
         <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
           <div class="container-fluid">
               <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-                  <a class="navbar-brand" href="/">Biblion</a>
+                  <a class="navbar-brand" href="/home">Biblion</a>
                   <ul class="navbar-nav me-auto">
                       <li class="nav-item active">
                           <a class="nav-link" href="/allPosts">All Posts</a>
@@ -50,7 +50,7 @@ export const NavBar = (props) => {
                   <form class="input-group inline-form" onSubmit={(event) => handleSubmit(event)}>
                       <input type="search" class="form-control" placeholder="Search Book Title or Author:" aria-label="Search" size="150" onChange={handleChangeSearch}/>
                       <span class="input-group-btn">
-                          <button class="btn btn-success" type="submit">Search</button>
+                          <button class="btn btn-success nav-search-button" type="submit">Search</button>
                       </span>
                       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".dual-collapse2">
                           <span class="navbar-toggler-icon"></span>
