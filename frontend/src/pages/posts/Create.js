@@ -66,7 +66,7 @@ export default function Create(props) {
               </div>
               <div class="form-group">
                 <label for="exampleFormControlSelect1"><h5>Genre</h5></label>
-                <select multiple class="form-control" id="exampleFormControlSelect1">
+                <select multiple class="form-control non-nav-input" id="exampleFormControlSelect1">
                   <option value="drama" selected>Drama</option>
                   <option value="comedy">Comedy</option>
                   <option value="tragedy">Tragedy</option>
@@ -74,7 +74,7 @@ export default function Create(props) {
               </div>
               <div class="form-group">
                 <label for="summary"><h5>Summary</h5></label>
-                <textarea class="form-control" id="summary" rows="3" placeholder="Enter a brief summary of the book." onChange={handleChangeSummary}></textarea>
+                <textarea class="form-control non-nav-input" id="summary" rows="3" placeholder="Enter a brief summary of the book." onChange={handleChangeSummary}></textarea>
               </div>
               <div class="form-group">
                 <label for="opinion"><h5>Opinion</h5></label>
