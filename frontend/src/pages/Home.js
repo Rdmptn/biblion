@@ -6,6 +6,7 @@ export default function Home() {
           <h1>Biblion</h1>
       </header>
       
+    <div class="card border-success mb-3 text-white bg-dark small-post-card">
       <img class="home-logo" src="https://icons.iconarchive.com/icons/google/noto-emoji-objects/512/62859-open-book-icon.png"/>
       
       <p class="home-desc">
@@ -13,7 +14,7 @@ export default function Home() {
         Register or login to create a new post, or browse posts via the links and searchbar above.
       </p>
       <p class="home-desc">Made by Cameron Uniac & Farid Asadpour.</p>
-      
+      </div>
     </div>
   )
 }

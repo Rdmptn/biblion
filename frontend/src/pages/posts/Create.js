@@ -58,7 +58,7 @@ export default function Create(props) {
               </div>
               <div class="form-group">
                 <label for="exampleFormControlSelect1"><h5>Genre</h5></label>
-                <select multiple class="form-control non-nav-input" id="exampleFormControlSelect1">
+                <select multiple class="form-control non-nav-input" id="exampleFormControlSelect1" onChange={handleChangeGenre}>
                   <option value="Adventure" selected>Adventure</option>
                   {categoryArray.map(genre =>
                     <option value={genre}>{genre}</option>

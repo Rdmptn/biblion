@@ -24,6 +24,8 @@ html, body {
 
 .home-desc {
   text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .navbar {
@@ -105,9 +107,8 @@ div .main-content-container{
   margin-bottom: 24px;
 }
 
-/* footer { */
-  /* position: fixed; */
-  /* bottom: 0; */
-  /* width: 100%; */
-/* } */
+.profile-badge-display {
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
   
