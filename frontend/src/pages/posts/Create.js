@@ -40,14 +40,6 @@ export default function Create(props) {
     post.opinion = event.target.value;
   }
   
-  // let genreOptions = ""
-  
-  // for (let i = 0; i < categoryArray.length; i++) {
-    // genreOptions += "<option value={categoryArray[i]}>{categoryArray[i]}</option>"
-  // }
-  
-  // console.log(genreOptions.value);
-  
   return (
   
       <div class="main-content-container"> 
@@ -58,27 +50,28 @@ export default function Create(props) {
             <form onSubmit={(event) => handleSubmit(event)}>
               <div class="form-group">
                 <label for="title"><h5>Title</h5></label>
-                <input type="text" class="form-control non-nav-input" id="title" aria-describedby="nameHelp" placeholder="Enter name" onChange={handleChangeTitle}/>
+                <input type="text" class="form-control non-nav-input" id="title" aria-describedby="nameHelp" placeholder="Enter Book Title" onChange={handleChangeTitle}/>
               </div>
               <div class="form-group">
                 <label for="author"><h5>Author</h5></label>
-                <input type="text" class="form-control non-nav-input" id="author" aria-describedby="emailHelp" placeholder="Enter email" onChange={handleChangeAuthor}/>
+                <input type="text" class="form-control non-nav-input" id="author" aria-describedby="emailHelp" placeholder="Enter Book Author" onChange={handleChangeAuthor}/>
               </div>
               <div class="form-group">
                 <label for="exampleFormControlSelect1"><h5>Genre</h5></label>
                 <select multiple class="form-control non-nav-input" id="exampleFormControlSelect1">
                   <option value="drama" selected>Drama</option>
-                  <option value="comedy">Comedy</option>
-                  <option value="tragedy">Tragedy</option>
+                  {categoryArray.map(genre =>
+                    <option value={genre}>{genre}</option>
+                  )}
                 </select>
               </div>
               <div class="form-group">
                 <label for="summary"><h5>Summary</h5></label>
-                <textarea class="form-control non-nav-input" id="summary" rows="3" placeholder="Enter a brief summary of the book." onChange={handleChangeSummary}></textarea>
+                <textarea class="form-control non-nav-input" id="summary" rows="4" placeholder="Enter a brief summary of the book." onChange={handleChangeSummary}></textarea>
               </div>
               <div class="form-group">
                 <label for="opinion"><h5>Opinion</h5></label>
-                <input type="text" class="form-control non-nav-input" id="opinion" 
+                <textarea class="form-control non-nav-input" id="opinion"  rows="2"
                   placeholder="Enter a one or two sentence opinion on what you thought of the book." onChange={handleChangeOpinion}/>
               </div>
               <button type="submit" class="btn btn-success">Submit</button>
