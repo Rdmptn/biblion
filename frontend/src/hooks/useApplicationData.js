@@ -21,7 +21,7 @@ const useApplicationData = () => {
             .then(({
                 data
             }) => {
-                // console.log(data);
+                console.log(data);
                 dispatch({
                     type: SET_USERS,
                     users: data
@@ -35,12 +35,5 @@ const useApplicationData = () => {
         dispatch,
     };
 };
-
-// const useApplicationData = () => {
-  // const [state, setState] = useState({
-  // });
-  
-  // return {state}
-// }
 
 export default useApplicationData;

@@ -14,5 +14,5 @@ export const api_createComment = "/createComment";
 export const api_createLike = "/createLike";
 export const api_singlePostLikes = "/singlePostLikes";
 
-export const categoryArray = ["drama", "comedy", "tragedy"];
+export const categoryArray = ["Fantasy", "Horror", "Manga", "Mystery", "Nonfiction", "Romance", "Science Fiction", "Thriller"];
 

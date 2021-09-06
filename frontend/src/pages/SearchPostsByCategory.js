@@ -1,4 +1,4 @@
-import {api_url, api_searchPostsByCategory} from "../constants"
+import {api_url, api_searchPostsByCategory, categoryArray} from "../constants"
 import { Redirect } from 'react-router';
 import axios from "axios"
 import React, { useEffect, useState } from "react";
@@ -10,7 +10,7 @@ export default function SearchPostsByCategory() {
 
   const [posts, setPosts] = useState([]);
   const [categorySelected, setCategorySelected] = useState(false);
-  const [topic, setTopic] = useState("drama");
+  const [topic, setTopic] = useState("Adventure");
   const [selectedTopic, setSelectedTopic] = useState("");
   const handleSubmit = function(event) {
     console.log("topc++==", topic);
@@ -33,36 +33,28 @@ export default function SearchPostsByCategory() {
   const Topic = topic.charAt(0).toUpperCase() + topic.slice(1);
 
     return (
-        <html>
-          <body class="back_post">
-              <div class="post_back">
-                  <form  onSubmit={(event) => handleSubmit(event)}>
-                      <label>
-                        Genre:
-                      <select id="genre" name="genre" onChange={handleChangeGenre}>
-                        <option value="drama">Drama</option>
-                        <option value="comedy">Comedy</option>
-                        <option value="tragedy">Tragedy</option>
-                      </select>
-                      </label>
-                      <input type="submit" value="Submit" />
-                  </form>
-              </div>
-          </body>
-        
-        {categorySelected 
-            ?
+
           <div class="main-content-container">
             <header class="page-header">
               <h1>Posts for Genre: {selectedTopic}</h1>
             </header>
+            <form class="genre-form" onSubmit={(event) => handleSubmit(event)}>
+              <label>
+                <select class="form-select non-nav-input" id="exampleFormControlSelect1" onChange={handleChangeGenre}>
+                <option value="Adventure" selected>Adventure</option>
+                {categoryArray.map(genre =>
+                  <option value={genre}>{genre}</option>
+                )}
+                </select>
+              </label>
+              <input class="btn btn-success genre-search-button"type="submit" value="Submit" />
+            </form>
+            
             {posts.map(post => 
               SmallPost(post)
             )}
           </div>
-          :
-        ""}
-        </html>
+
     )
 
 }
