@@ -131,6 +131,7 @@ export default function SinglePost() {
                 <li>Genre: {post.topic}</li>
                 <li>Summary: {post.summary}</li>
                 <li>Opinion: {post.opinion}</li>
+                <li>Posted By: <img src={post.image} width="24px"/> {post.name} — {format(post.created_at)}</li>
               </ul>
           </td>
         </tr>
