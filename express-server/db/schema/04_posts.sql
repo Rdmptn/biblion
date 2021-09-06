@@ -6,5 +6,6 @@ CREATE TABLE posts (
   book_id INTEGER REFERENCES books(id) ON DELETE CASCADE,
   summary TEXT NOT NULL,
   opinion TEXT NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   CONSTRAINT no_duplicate_posts UNIQUE (user_id, book_id)
 );
