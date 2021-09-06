@@ -25,7 +25,7 @@ module.exports = (db) => {
     const body = req.params;
 
 
-    db.query(`SELECT comments.id, comments.message, users.name, badges.image
+    db.query(`SELECT comments.id, comments.message, comments.created_at, users.name, badges.image
     FROM posts JOIN comments ON posts.id=comments.post_id 
     JOIN users ON users.id = comments.user_id 
     JOIN badges  ON users.active_badge = badges.id

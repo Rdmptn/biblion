@@ -3,6 +3,7 @@ import { Redirect } from 'react-router';
 import axios from "axios"
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { format, render, cancel, register } from '../../node_modules/timeago.js/dist/timeago.min';
 
 export default function SinglePost() {
   
@@ -183,7 +184,7 @@ export default function SinglePost() {
               <td class="tdata">
                   <ul>
                     <li><img src={comment.image} width="24"/> {comment.name}</li>
-                    <li>Comment id: {comment.id}</li>
+                    <li>{format(comment.created_at)}</li>
                     <li>Comment Message: {comment.message}</li>
                   
                   </ul>
