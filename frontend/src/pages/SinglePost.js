@@ -116,65 +116,45 @@ export default function SinglePost() {
   }
 
   return (
-    <div class="post_back">
-      {/* <article>
-        {id}
-      </article> */}
-      <table class="table">
-        <tr>
-          <td class="tdata">
-              <ul>
-                {/* <li>Post id: {post.id}</li> */}
-                <li><img src={post.cover_url}/></li>
-                <li>Book Title: {post.title}</li>
-                <li>Author: {post.author}</li>
-                <li>Genre: {post.topic}</li>
-                <li>Summary: {post.summary}</li>
-                <li>Opinion: {post.opinion}</li>
-                <li>Posted By: <img src={post.image} width="24px"/> {post.name} — {format(post.created_at)}</li>
-              </ul>
-          </td>
-        </tr>
-      </table>
-      {/* <ul>
-        <li>Post id: {post.id}</li>
-        <li><img src={post.cover_url}/></li>
-        <li>Book Title: {post.title}</li>
-        <li>Author: {post.author}</li>
-        <li>Genre: {post.topic}</li>
-        <li>Summary: {post.summary}</li>
-        <li>Opinion: {post.opinion}</li>
-      </ul> */}
-      <div>
-      <a href="#" onClick={() => {amazonRedirect(post)}}>
-        <img src="https://wplov.in/wp-content/uploads/download-300x101-1.png" alt="Buy now on amazon" width="200px"/>
+
+        
+
+    <div class="main-content-container">
+      <header class="page-header">
+        <h1>Review for {post.title} by {post.author}</h1>
+        <h3>Posted By: <img src={post.image} width="24px"/> {post.name} — {format(post.created_at)} in <i>{post.topic}</i></h3>
+      </header>
+
+      <div class="card border-success mb-3 text-white bg-dark small-post-card">
+        <div class="card-body full-post">
+          <img src={post.cover_url}/>
+          <p class="card-text full-summary">{post.summary}</p>
+          <p class="card-text">{post.opinion}</p>
+        </div>
+      </div>
+       
+
+
+      <a class="amazon-button" href="#" onClick={() => {amazonRedirect(post)}}>
+        <img src="https://i.imgur.com/BmmY1mX.png" alt="Buy now on amazon" width="200px"/>
       </a>
-      </div>
-      <div>
-        {likesCount}Likes
-      </div>
-      <div>
-        <button onClick={addLike}>Like</button>
-      </div>
-      {/* <div>
-        {comments.map(comment => 
-          <ul>
-            <li>Comment id: {comment.id}</li>
-            <li>Comment Message: {comment.message}</li>
-          </ul>
-        )}   
-      </div>  */}
-      <div>
-        <table class="table">
-         <div>
+
+
+      <div class="card border-success mb-3 text-white bg-dark login-card comment-card">
+      
+      {likesCount === 1 ? <p>{likesCount} Like </p> : <p>{likesCount} Likes</p>}
+      <button onClick={addLike}>Like</button>
+   
         <form  onSubmit={(event) => handleSubmit(event)}>
-          <label>
-            Enter Your Comment:
-            <input id="comment-input" type="text" name="comment" onChange={handleChangeComment}/>
-          </label>
-          <input type="submit" value="Submit" />
+         <div class="form-group">
+            <label for="comment-input"><h5>Leave a Comment</h5></label>
+            <textarea class="form-control non-nav-input" id="comment-input" name="comment" rows="2" onChange={handleChangeComment}/>
+          </div>
+          <button type="submit" class="btn btn-success">Submit</button>
         </form>
       </div>
+      
+
                   <thead>
                       <tr>
                           <th ><h2>The Comments For This Post</h2></th>
@@ -194,11 +174,21 @@ export default function SinglePost() {
               </tr>
                       )}
                   </tbody>
-          </table>
-      </div>
      
     </div>
     
   )
           
 }
+
+
+
+// <ul>
+          // <li><img src={post.cover_url}/></li>
+          // <li>Book Title: {post.title}</li>
+          // <li>Author: {post.author}</li>
+          // <li>Genre: {post.topic}</li>
+          // <li>Summary: {post.summary}</li>
+          // <li>Opinion: {post.opinion}</li>
+          // <li>Posted By: <img src={post.image} width="24px"/> {post.name} — {format(post.created_at)}</li>
+        // </ul>

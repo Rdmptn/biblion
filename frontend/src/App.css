@@ -111,4 +111,21 @@ div .main-content-container{
   padding-bottom: 10px;
   padding-top: 10px;
 }
-  
+
+.full-post {
+  text-align: center;
+}
+
+.full-summary {
+  padding-top: 30px;
+}
+
+.amazon-button {
+  margin: 0 auto;
+  display: block;
+  width: 200px;
+}
+
+.comment-card {
+  margin-top: 15px;
+}
