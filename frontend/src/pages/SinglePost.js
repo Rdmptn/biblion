@@ -26,6 +26,7 @@ export default function SinglePost() {
 
     axios.get(`${api_url}${api_singlePostComments}/${id}`)
     .then(response => setComments(response.data.comments))
+    document.getElementById('comment-input').value = "";
   }
 
   const fetchLikesData = function() {
@@ -168,7 +169,7 @@ export default function SinglePost() {
         <form  onSubmit={(event) => handleSubmit(event)}>
           <label>
             Enter Your Comment:
-            <input type="text" name="comment" onChange={handleChangeComment}/>
+            <input id="comment-input" type="text" name="comment" onChange={handleChangeComment}/>
           </label>
           <input type="submit" value="Submit" />
         </form>
