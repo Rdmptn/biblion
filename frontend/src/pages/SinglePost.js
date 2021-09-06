@@ -27,6 +27,12 @@ export default function SinglePost() {
     axios.get(`${api_url}${api_singlePostComments}/${id}`)
     .then(response => setComments(response.data.comments))
     document.getElementById('comment-input').value = "";
+    let commentValue = null;
+    let commentUser = {id, commentValue, user}
+    setCommentUser((prev) => ({
+      ...prev,
+      commentUser
+    }))
   }
 
   const fetchLikesData = function() {
@@ -129,22 +135,21 @@ export default function SinglePost() {
         <div class="card-body full-post">
           <img src={post.cover_url}/>
           <p class="card-text full-summary">{post.summary}</p>
-          <p class="card-text">{post.opinion}</p>
+          <p class="card-text full-opinion">{post.opinion}</p>
+          {likesCount === 1 ? <p>{likesCount} Like </p> : <p class="likes-counter">{likesCount} Likes</p>}
+          <button class="btn-success icon-play" onClick={addLike}></button>
         </div>
       </div>
-       
-
 
       <a class="amazon-button" href="#" onClick={() => {amazonRedirect(post)}}>
         <img src="https://i.imgur.com/BmmY1mX.png" alt="Buy now on amazon" width="200px"/>
       </a>
 
+      <header class="page-header comment-header">
+        <h2>Comments</h2>
+      </header>
 
       <div class="card border-success mb-3 text-white bg-dark login-card comment-card">
-      
-      {likesCount === 1 ? <p>{likesCount} Like </p> : <p>{likesCount} Likes</p>}
-      <button onClick={addLike}>Like</button>
-   
         <form  onSubmit={(event) => handleSubmit(event)}>
          <div class="form-group">
             <label for="comment-input"><h5>Leave a Comment</h5></label>
@@ -153,27 +158,15 @@ export default function SinglePost() {
           <button type="submit" class="btn btn-success">Submit</button>
         </form>
       </div>
-      
 
-                  <thead>
-                      <tr>
-                          <th ><h2>The Comments For This Post</h2></th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                  {comments.map(comment => 
-            <tr>
-              <td class="tdata">
-                  <ul>
-                    <li>Posted By: <img src={comment.image} width="24px"/> {comment.name} — {format(comment.created_at)}</li>
-                    <li>Comment Message: {comment.message}</li>
-                  
-                  </ul>
-                </td>
-
-              </tr>
-                      )}
-                  </tbody>
+      {comments.map(comment => 
+        <div class="card border-success mb-3 text-white bg-dark small-post-card">
+          <div class="card-body">
+            <p class="card-text"><img src={comment.image} width="24px"/> {comment.name} — {format(comment.created_at)}</p>
+            <p class="card-text">{comment.message}</p>
+            </div>
+          </div>
+        )}
      
     </div>
     
