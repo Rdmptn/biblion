@@ -182,6 +182,7 @@ export default function SinglePost() {
             <tr>
               <td class="tdata">
                   <ul>
+                    <li><img src={comment.image} width="24"/> {comment.name}</li>
                     <li>Comment id: {comment.id}</li>
                     <li>Comment Message: {comment.message}</li>
                   

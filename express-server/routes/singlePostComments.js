@@ -25,8 +25,10 @@ module.exports = (db) => {
     const body = req.params;
 
 
-    db.query(`SELECT comments.id, comments.message 
+    db.query(`SELECT comments.id, comments.message, users.name, badges.image
     FROM posts JOIN comments ON posts.id=comments.post_id 
+    JOIN users ON users.id = comments.user_id 
+    JOIN badges  ON users.active_badge = badges.id
     WHERE posts.id = $1 ORDER BY comments.id DESC;`, [body.id])
       .then(data => {
         console.log(data.rows[0]);
