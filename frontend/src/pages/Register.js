@@ -24,7 +24,7 @@ export default function Register() {
       setErrorMessage("Password field cannot be empty.");
     } else if (user.password.length < 3) {
       setErrorMessage("Password must be at least 3 characters.");
-    } else if (user.passowrod.length > 20) {
+    } else if (user.password.length > 20) {
       setErrorMessage("Password must be less than 20 characters.");
     } else {
       setErrorMessage(false);
