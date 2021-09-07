@@ -97,11 +97,11 @@ const App = () => {
             <AllPosts />
           </Route>
         
-          <Route path="/Posts/:id">
+          <Route exact path="/Posts/:id">
             <SinglePost />
           </Route>
 
-          <Route path="/MyPosts/:id">
+          <Route path="/Posts/:id/edit">
             {!user_session ? <Redirect to="/login"/> : <MySinglePost />}
           </Route>
 
