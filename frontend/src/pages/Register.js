@@ -7,19 +7,35 @@ import React, { useEffect, useState } from "react";
 export default function Register() {
   const [isRegistered, setIsRegistered] = useState();
   const [user, setUser] = useState({});
+  const [errorMessage, setErrorMessage] =  useState(false);
+  
   const handleSubmit = function(event) {
     event.preventDefault();
-    axios.post(`${api_url}${api_register}`, user)
-    .then((response) => {
-      localStorage.setItem("user", JSON.stringify(response.data.user));
-      
-      if (response.status === 200) {
+    
+    if (!user.name) {
+      setErrorMessage("Name field cannot be empty.");
+    } else if (user.name.length < 3) {
+      setErrorMessage("Name must be at least 3 characters.");
+    } else if (!user.email) {
+      setErrorMessage("Email field cannot be empty.");
+    } else if (!user.password) {
+      setErrorMessage("Password field cannot be empty.");
+    } else if (user.password.length < 3) {
+      setErrorMessage("Password must be at least 3 characters.");
+    } else {
+      setErrorMessage(false);
+      axios.post(`${api_url}${api_register}`, user)
+      .then((response) => {
+        localStorage.setItem("user", JSON.stringify(response.data.user));
         
-      setIsRegistered(true);
-      window.location.replace("/");
+        if (response.status === 200) {
+          
+        setIsRegistered(true);
+        window.location.replace("/");
+      }
+    })
+      .catch(error => console.log(error))
     }
-  })
-    .catch(error => console.log(error))
   }
 
   const handleChangeName = function(event) {
@@ -66,6 +82,7 @@ export default function Register() {
             <input type="password" class="form-control non-nav-input" id="exampleInputPassword1" placeholder="Password" onChange={handleChangePassword}/>
           </div>
           <button type="submit" class="btn btn-success">Submit</button>
+          {errorMessage ? <div class="error-message">{errorMessage}</div> : ""}
         </form>
       </div>
     </div>
