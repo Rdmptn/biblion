@@ -26,13 +26,17 @@ export default function Register() {
       setErrorMessage(false);
       axios.post(`${api_url}${api_register}`, user)
       .then((response) => {
-        localStorage.setItem("user", JSON.stringify(response.data.user));
+        if (response.data.user) {
+          localStorage.setItem("user", JSON.stringify(response.data.user));
         
-        if (response.status === 200) {
+          if (response.status === 200) {
           
-        setIsRegistered(true);
-        window.location.replace("/");
-      }
+          setIsRegistered(true);
+          window.location.replace("/");
+        }
+       } else {
+         setErrorMessage(response.data.error);
+       }
     })
       .catch(error => console.log(error))
     }
