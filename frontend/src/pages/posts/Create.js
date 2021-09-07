@@ -5,40 +5,108 @@ import React, { useEffect, useState } from "react";
 
 
 export default function Create(props) {
-  let currentUser = props.currentUser; 
-  let post = {};
-  post.user_id = currentUser.id;
-  post.genre = "Adventure";
+   
+  // let post = {};
+  const [post, setPost] = useState({genre: "Adventure"});
+ 
+  
+  // post.user_id = currentUser.id;
+  // post.genre = "Adventure";
+  const [errorMessage, setErrorMessage] =  useState(false);
+  
+   
 
   const handleSubmit = function(event) {
     event.preventDefault();
-    axios.post(`${api_url}${api_create}`, post)
-    .then((response) => {
-      console.log("response.data___+++:::", response.data); 
-      window.location.replace(`/Posts/${response.data.rows[0].id}`);
-    })
-    .catch(error => console.log(error))
+    
+    if (!post.title) {
+      setErrorMessage("Title field cannot be empty.");
+    } else if (!post.author) {
+      setErrorMessage("Author field cannot be empty.");
+    } else if (!post.summary) {
+      setErrorMessage("Summary field cannot be empty.");
+    } else if (post.summary.length < 100) {
+      setErrorMessage(`Post summary must be at least 100 characters in length. Your current summary is only ${post.summary.length} characters.`);
+    } else if (post.summary.length > 1000) {
+      setErrorMessage(`Post summary must be less than 1000 characters in length. Your current summary is ${post.summary.length} characters.`);
+    } else if (!post.opinion) {
+      setErrorMessage("Opinion field cannot be empty.");
+    } else if (post.opinion.length < 50) {
+      setErrorMessage(`Post opinion must be at least 50 characters in length. Your current opinion is only ${post.opinion.length} characters.`);
+    } else if (post.opinion.length > 250) {
+      setErrorMessage(`Post opinion must be less than 250 characters in length. Your current opinion is ${post.opinion.length} characters.`);
+    } else {
+      setErrorMessage(false);
+      let user_id = props.currentUser.id;
+      post.user_id = user_id;
+      axios.post(`${api_url}${api_create}`, post)
+      .then((response) => {
+        console.log("response.data___+++:::", response.data); 
+        window.location.replace(`/Posts/${response.data.rows[0].id}`);
+      })
+      .catch(error => console.log(error))
+    }
   }
-
+  
   const handleChangeTitle = function(event) {
-    post.title = event.target.value;
+    let title = event.target.value;
+    setPost((prev) => ({
+      ...prev,
+      title
+    }))
   }
   
   const handleChangeAuthor = function(event) {
-    post.author = event.target.value;
+    let author = event.target.value;
+    setPost((prev) => ({
+      ...prev,
+      author
+    }))
   }
   
   const handleChangeGenre = function(event) {
-    post.genre = event.target.value;
+    let genre = event.target.value;
+    setPost((prev) => ({
+      ...prev,
+      genre
+    }))
   }
-
+  
   const handleChangeSummary = function(event) {
-    post.summary = event.target.value;
+    let summary = event.target.value;
+    setPost((prev) => ({
+      ...prev,
+      summary
+    }))
   }
   
   const handleChangeOpinion = function(event) {
-    post.opinion = event.target.value;
+    let opinion = event.target.value;
+    setPost((prev) => ({
+      ...prev,
+      opinion
+    }))
   }
+
+  // const handleChangeTitle = function(event) {
+    // post.title = event.target.value;
+  // }
+  
+  // const handleChangeAuthor = function(event) {
+    // post.author = event.target.value;
+  // }
+  
+  // const handleChangeGenre = function(event) {
+    // post.genre = event.target.value;
+  // }
+
+  // const handleChangeSummary = function(event) {
+    // post.summary = event.target.value;
+  // }
+  
+  // const handleChangeOpinion = function(event) {
+    // post.opinion = event.target.value;
+  // }
   
   return (
   
@@ -75,6 +143,7 @@ export default function Create(props) {
                   placeholder="Enter a one or two sentence opinion on what you thought of the book." onChange={handleChangeOpinion}/>
               </div>
               <button type="submit" class="btn btn-success">Submit</button>
+              {errorMessage ? <div class="error-message">{errorMessage}</div> : ""}
             </form>
           </div>
         </div>
@@ -82,32 +151,3 @@ export default function Create(props) {
         
   )
 }
-
-
-// <form  onSubmit={(event) => handleSubmit(event)}>
-          // <label>
-            // Book Title:
-            // <input type="text" name="title" onChange={handleChangeTitle}/>
-          // </label>
-          // <label>
-            // Author:
-            // <input type="text" name="Author" onChange={handleChangeAuthor}/>
-          // </label>
-          // <label>
-            // Genre:
-          // <select id="genre" name="genre" onChange={handleChangeGenre}>
-            // <option value="drama">Drama</option>
-            // <option value="comedy">Comedy</option>
-            // <option value="tragedy">Tragedy</option>
-          // </select>
-          // </label>
-          // <label>
-            // Summary:
-            // <input type="textarea" name="summary" onChange={handleChangeSummary}/>
-          // </label>
-          // <label>
-            // Opinion:
-            // <input type="text" name="opinion" onChange={handleChangeOpinion}/>
-          // </label>
-          // <input type="submit" value="Submit" />
-        // </form>
