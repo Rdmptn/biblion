@@ -143,13 +143,14 @@ div .main-content-container{
   margin-bottom: 5px;
 }
 
-.icon-play {
-  border-radius: 50%;
-  background-image : url(https://i.imgur.com/lXQ5rYF.png);
-  background-size: cover;
-  display: inline-block;
+.like-button {
   height: 25px;
   width: 25px;
+  border-radius: 50%;
+}
+
+.like-button:hover {
+  cursor: pointer;
 }
 
 .btn:focus,.btn:active {
