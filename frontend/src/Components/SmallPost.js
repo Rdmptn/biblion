@@ -13,8 +13,8 @@ export const SmallPost = (post) => {
           <div class="card-body">
             <h5 class="card-title">{post.title} by {post.author} — <i>{post.topic}</i></h5>
             <h6 class="card-title">Posted By: <img src={post.image} width="24px"/> {post.name} — {format(post.created_at)}</h6>
-            <p class="card-text">{post.summary}</p>
-            <p class="card-text">{post.opinion}</p>
+              {post.summary.length < 200 ? <p class="card-text">{post.summary}</p> : <p class="card-text">{post.summary.slice(0,200)}...</p>}
+              {post.opinion.length < 100 ? <p class="card-text">{post.opinion}</p> : <p class="card-text">{post.opinion.slice(0,100)}...</p>}
             <a href={`/Posts/${post.id}`} class="btn btn-success">View Post Details</a>
           </div>
         </div>

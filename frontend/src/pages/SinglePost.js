@@ -14,6 +14,7 @@ export default function SinglePost() {
   const [likesCount, setLikesCount] = useState(0);
   const [commentUser, setCommentUser] = useState({});
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+  const [errorMessage, setErrorMessage] = useState(false);
 
   const fetchPostData = function() {
     
@@ -23,10 +24,9 @@ export default function SinglePost() {
   }
 
   const fetchCommentsData = function() {
-
+    
     axios.get(`${api_url}${api_singlePostComments}/${id}`)
     .then(response => setComments(response.data.comments))
-    document.getElementById('comment-input').value = "";
     let commentValue = null;
     let commentUser = {id, commentValue, user}
     setCommentUser((prev) => ({
@@ -66,22 +66,31 @@ export default function SinglePost() {
 
 
   const handleSubmit = function(event) {
-    
     event.preventDefault();
-    
-    axios.post(`${api_url}${api_createComment}`, commentUser)
-    .then((response) => {
-      console.log("response.data___+++:::", response.data);
-      
-      fetchCommentsData();
-      if (response.status === 200) {
+    let commentContent = commentUser.commentUser.commentValue;
+    if (!commentContent) {
+      setErrorMessage("Comment cannot be empty");
+    } else if (commentContent.length < 3) {
+      setErrorMessage("Comment must be atleast 3 characters long.");
+    } else if (commentContent.length > 100) {
+      setErrorMessage(`Comment must be 100 or less characters long. Your comment is currently ${commentContent.length} characters.`);
+    } else {
+      setErrorMessage(false);
+      axios.post(`${api_url}${api_createComment}`, commentUser)
+      .then((response) => {
+        console.log("response.data___+++:::", response.data);
+        document.getElementById('comment-input').value = "";
         
-       
-      // window.location.reload();
-      // window.history.back();
+        fetchCommentsData();
+        if (response.status === 200) {
+          
+         
+        // window.location.reload();
+        // window.history.back();
+        }
+      })
+      .catch(error => console.log(error))
     }
-  })
-    .catch(error => console.log(error))
   }
 
   const handleChangeComment = function(event) {
@@ -128,7 +137,7 @@ export default function SinglePost() {
     <div class="main-content-container">
       <header class="page-header">
         <h1>Review for {post.title} by {post.author}</h1>
-        <h3>Posted By: <img src={post.image} width="24px"/> {post.name} — {format(post.created_at)} in <i>{post.topic}</i></h3>
+        <h3>Posted By: <img src={post.image} width="36px"/> {post.name} — {format(post.created_at)} in <i>{post.topic}</i></h3>
       </header>
 
       <div class="card border-success mb-3 text-white bg-dark small-post-card">
@@ -137,7 +146,7 @@ export default function SinglePost() {
           <p class="card-text full-summary">{post.summary}</p>
           <p class="card-text full-opinion">{post.opinion}</p>
           {likesCount === 1 ? <p>{likesCount} Like </p> : <p class="likes-counter">{likesCount} Likes</p>}
-          <img src="https://i.imgur.com/lXQ5rYF.png" class="like-button" onClick={addLike}/>
+          {user ? <img src="https://i.imgur.com/lXQ5rYF.png" class="like-button" onClick={addLike}/> : ""}
         </div>
       </div>
 
@@ -149,24 +158,28 @@ export default function SinglePost() {
         <h2>Comments</h2>
       </header>
 
+      {user ?
       <div class="card border-success mb-3 text-white bg-dark login-card comment-card">
         <form  onSubmit={(event) => handleSubmit(event)}>
-         <div class="form-group">
+          <div class="form-group">
             <label for="comment-input"><h5>Leave a Comment</h5></label>
             <textarea class="form-control non-nav-input" id="comment-input" name="comment" rows="2" onChange={handleChangeComment}/>
           </div>
           <button type="submit" class="btn btn-success">Submit</button>
+          {errorMessage ? <div class="error-message">{errorMessage}</div> : ""}
         </form>
       </div>
+      :
+      <p>Please login to leave a comment.</p>}
 
       {comments.map(comment => 
         <div class="card border-success mb-3 text-white bg-dark small-post-card">
           <div class="card-body">
             <p class="card-text"><img src={comment.image} width="24px"/> {comment.name} — {format(comment.created_at)}</p>
             <p class="card-text">{comment.message}</p>
-            </div>
           </div>
-        )}
+        </div>
+      )}
      
     </div>
     

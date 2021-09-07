@@ -6,25 +6,33 @@ import React, { useEffect, useState } from "react";
 export default function Login() {
   // const [isRegistered, setIsRegistered] = useState(false);
   const [user, setUser] = useState({});
+  const [errorMessage, setErrorMessage] =  useState(false);
   const handleSubmit = function(event) {
-    console.log("user", user);
+    if (!user.email) {
+      setErrorMessage("Email field must not be empty.");
+    } else if (!user.password) {
+      setErrorMessage("Password field must not be empty.");
+    }
     event.preventDefault();
+    if (user.email && user.password) {
     axios.post(`${api_url}${api_login}`, user)
     .then((response) => {
       console.log("response.data___+++:::", response.data);
       if (response.data.name) {
         localStorage.setItem("user", JSON.stringify(response.data));
         console.log("Correct email and password!");
+        setErrorMessage(false);
         // window.location.reload();
         window.location.replace("/");
         // set cookie to user id
         // redirect to home page or previous page?
       } else {
         // display this error on the page somewhere instead of console.logging
-        console.log(response.data.error);
+        setErrorMessage(response.data.error);
       }
     })
     .catch(error => console.log("WTF:", error))
+    }
   }
   
   const handleChangeEmail = function(event) {
@@ -60,6 +68,7 @@ export default function Login() {
             <input type="password" class="form-control non-nav-input" id="exampleInputPassword1" placeholder="Password" onChange={handleChangePassword}/>
           </div>
           <button type="submit" class="btn btn-success">Submit</button>
+          {errorMessage ? <div class="error-message">{errorMessage}</div> : ""}
         </form>
       </div>
     </div>
