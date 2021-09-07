@@ -17,20 +17,33 @@ module.exports = (db) => {
           let results = data.rows;
           for (let result of results) {
             let book_id = result.id;
-            db.query(`SELECT posts.id FROM posts WHERE posts.book_id = $1;`, [book_id])
+            db.query(`SELECT posts.id FROM posts WHERE posts.book_id = $1 ORDER BY posts.id DESC;`, [book_id])
               .then(data => {
                 let postResults = data.rows;
                 for (let postResult of postResults) {
                   let post_id = postResult.id;
-                  // db.query(`SELECT * FROM posts WHERE posts.id = $1;`, [post_id])
-                  db.query(`SELECT posts.summary, posts.opinion, books.title, books.author, books.cover_url, categories.topic 
-                            FROM posts JOIN books ON posts.book_id=books.id 
-                            JOIN categories ON books.category_id=categories.id 
+                  db.query(`SELECT users.name, posts.id, posts.summary, posts.opinion, books.title, books.author, books.cover_url, categories.topic, badges.image, posts.created_at
+                            FROM users JOIN posts on users.id = posts.user_id 
+                            JOIN books ON posts.book_id=books.id 
+                            JOIN categories ON books.category_id=categories.id
+                            JOIN badges ON badges.id = users.active_badge
                             WHERE posts.id = $1;`, [post_id])
                     .then(data => {
                       let thisPost = data.rows[0];
                       posts.push(thisPost);
                       if (results[results.length-1] === result && postResults[postResults.length-1] === postResult) { 
+                        console.log("RESULTS:", posts);
+                        function compare( a, b ) {
+                          if ( a.created_at < b.created_at ){
+                            return 1;
+                          }
+                          if ( a.created_at > b.created_at ){
+                            return -1;
+                          }
+                          return 0;
+                        }
+
+                        posts.sort( compare );
                         res.json(posts)
                       }
                     })

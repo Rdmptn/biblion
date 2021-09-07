@@ -1,45 +1,39 @@
 .App {
-  text-align: center;
-  padding-top: 80px;
+  padding-top: 56px;
+  padding-bottom: 30px;
+  color: white;
 }
 
-/* .App-logo { */
-  /* height: 40vmin; */
-  /* pointer-events: none; */
-/* } */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-image: url("https://i.imgur.com/Zzj92XA.png");
+}
 
-/* @media (prefers-reduced-motion: no-preference) { */
-  /* .App-logo { */
-    /* animation: App-logo-spin infinite 20s linear; */
-  /* } */
-/* } */
+.home-header h1{
+  text-align: center;
+  font-size: 72px;
+}
 
-/* .App-header { */
-  /* background-color: #282c34; */
-  /* min-height: 100vh; */
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* font-size: calc(10px + 2vmin); */
-  /* color: white; */
-/* } */
+.home-logo {
+  display: block;
+  margin: auto;
+  width: 50%;
+}
 
-/* .App-link { */
-  /* color: #61dafb; */
-/* } */
+.home-desc {
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
 
-/* @keyframes App-logo-spin { */
-  /* from { */
-    /* transform: rotate(0deg); */
-  /* } */
-  /* to { */
-    /* transform: rotate(360deg); */
-  /* } */
-/* } */
+.navbar {
+  border-bottom: 1px solid #1e8355;
+}
 
-.btn-outline-success {
-  margin-left: 10px;
+.form-control {
+  margin-right: 10px;
 }
 
 .logged-in-badge {
@@ -48,6 +42,10 @@
 
 .logged-in-name {
  color: rgba(255,255,255,.55);
+}
+
+.nav-search-button {
+   margin-right: 10px;
 }
 
 .table .tdata {
@@ -59,4 +57,109 @@
 
 .post_back {
   background-color: tomato;
+}
+
+.card {
+  margin: 0 auto;
+}
+
+.small-post-card {
+  max-width: 800px;
+  text-align: left;
+}
+
+.rounded-start {
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.container {
+  max-width: 800px;
+}
+
+div .main-content-container{
+  max-width: 820px;
+  margin: 0 auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 24px;
+}
+
+.page-header {
+  border-bottom: 3px solid #1e8355;
+  margin-bottom: 24px;
+}
+
+.non-nav-input {
+  margin-bottom: 10px;
+}
+
+.login-card {
+  padding: 10px;
+}
+
+.genre-search-button {
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+.genre-form {
+  margin-bottom: 24px;
+}
+
+.profile-badge-display {
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.full-post {
+  text-align: center;
+}
+
+.full-summary {
+  padding-top: 30px;
+}
+
+.full-opinion {
+  padding-bottom: 15px;
+}
+
+.amazon-button {
+  margin: 0 auto;
+  display: block;
+  width: 200px;
+}
+
+.comment-header{
+  margin-top: 15px;
+  /* margin-bottom: 15px; */
+}
+
+.comment-card {
+  margin-top: 15px;
+}
+
+.likes-counter {
+  margin-bottom: 5px;
+}
+
+.like-button {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+}
+
+.like-button:hover {
+  cursor: pointer;
+}
+
+.btn:focus,.btn:active {
+   outline: none !important;
+   box-shadow: none;
+   border-color: rgba(0,0,0,.125);
+}
+
+.error-message {
+  color: red;
+  padding-top: 20px;
 }

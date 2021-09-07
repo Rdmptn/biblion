@@ -20,7 +20,7 @@ module.exports = (db) => {
           res.json(user)
         } else {
           //invalid password
-          res.json({ error: "Incorrect password" });
+          res.json({ error: "Incorrect password." });
         }
       })
       .catch((err) => {

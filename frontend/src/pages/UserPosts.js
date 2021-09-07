@@ -3,8 +3,7 @@ import { Redirect } from 'react-router';
 import axios from "axios"
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
-
+import SmallPost from "../Components/SmallPost";
 
 
 export default function UserPosts() {
@@ -18,49 +17,20 @@ export default function UserPosts() {
   }, [])
 
   return (
-      <div class="post_back">
-          {/* {posts.map(post => 
-            <ul>
-              <li>Post id: {post.id}</li>
-              <li>Poster's Name: {post.name}</li>
-              <li><img src={post.cover_url}/></li>
-              <li>Book Title: {post.title}</li>
-              <li>Author: {post.author}</li>
-              <li>Genre: {post.topic}</li>
-              <li>Summary: {post.summary}</li>
-              <li>Opinion: {post.opinion}</li>
-              <li><Link to={`/Posts/${post.id}`}>View Post Details</Link></li>
-            </ul>
-          )} */}
+    
+      <div class="main-content-container">
+        <header class="page-header">
+          <h1>My Posts</h1>
+        </header>
+        {posts.length > 0
+          ? 
+        posts.map(post => 
+          SmallPost(post)
+        )
+        :
+       <h4>You haven't created any posts yet, consider creating a post <a href="/create"><i>here</i></a>.</h4>}
+      </div>
+    
+  )   
 
-         <table class="table">
-                <thead>
-                     <tr>
-                        <th ><h2>All Your Posts</h2></th>
-                    </tr>
-                </thead>
-                <tbody>
-                {posts.map(post => 
-                    <tr>
-                        <td class="tdata"><ul>
-              {/* <li>Post id: {post.id}</li> */}
-              <li>Poster's Name: {post.name}</li>
-              <li><img src={post.cover_url}/></li>
-              <li>Book Title: {post.title}</li>
-              <li>Author: {post.author}</li>
-              <li>Genre: {post.topic}</li>
-              <li>Summary: {post.summary}</li>
-              <li>Opinion: {post.opinion}</li>
-              <li><Link to={`/MyPosts/${post.id}`}>View Your Post's Details and/or Edit and/or Delete It</Link></li>
-              
-            </ul></td>
-
-                    </tr>
-                    )}
-                </tbody>
-          </table>
-          
-      </div>  
-  )          
-  
 }

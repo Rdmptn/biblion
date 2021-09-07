@@ -87,26 +87,28 @@ module.exports = (db) => {
               axios.get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${post.title}+inauthor:${post.author}&country=CA`)
                 .then(data => {
                   if (data.data.items) {
-                    //Create the new book with associated category id and pages/cover image from api
-                    let cover_url = data.data.items[0].volumeInfo.imageLinks.thumbnail;
-                    let book_pages = data.data.items[0].volumeInfo.pageCount;
-                    db.query(`INSERT INTO books (category_id, title, author, pages, cover_url)
-                            VALUES ($1, $2, $3, $4, $5) RETURNING books.id;`, [categoryId, post.title, post.author, book_pages, cover_url])
-                    .then(data => {
-                      let bookId = data.rows[0].id
-                      //Update user stats
-                      db.query(`UPDATE users SET post_count = post_count + 1, page_count = page_count + $1
-                                WHERE users.id = $2 RETURNING *;`, [book_pages, post.user_id])
+                    if (data.data.items[0].volumeInfo.imageLinks && data.data.items[0].volumeInfo.pageCount) {
+                      //Create the new book with associated category id and pages/cover image from api
+                      let cover_url = data.data.items[0].volumeInfo.imageLinks.thumbnail;
+                      let book_pages = data.data.items[0].volumeInfo.pageCount;
+                      db.query(`INSERT INTO books (category_id, title, author, pages, cover_url)
+                              VALUES ($1, $2, $3, $4, $5) RETURNING books.id;`, [categoryId, post.title, post.author, book_pages, cover_url])
                       .then(data => {
-                        badgeChecker(data);
-                      //Create the new post
-                        db.query(`INSERT INTO posts (user_id, book_id, summary, opinion)
-                                  VALUES ($1, $2, $3, $4) RETURNING posts.id;`, [post.user_id, bookId, post.summary, post.opinion])
-                          .then(data => {
-                            res.json(data);
-                          })
+                        let bookId = data.rows[0].id
+                        //Update user stats
+                        db.query(`UPDATE users SET post_count = post_count + 1, page_count = page_count + $1
+                                  WHERE users.id = $2 RETURNING *;`, [book_pages, post.user_id])
+                        .then(data => {
+                          badgeChecker(data);
+                        //Create the new post
+                          db.query(`INSERT INTO posts (user_id, book_id, summary, opinion)
+                                    VALUES ($1, $2, $3, $4) RETURNING posts.id;`, [post.user_id, bookId, post.summary, post.opinion])
+                            .then(data => {
+                              res.json(data);
+                            })
+                        })
                       })
-                    })
+                    } 
                   } else {
                     //Create the new book with associated category id using default page/image data
                     db.query(`INSERT INTO books (category_id, title, author)
@@ -115,7 +117,7 @@ module.exports = (db) => {
                       let bookId = data.rows[0].id
                       //Update user stats
                       db.query(`UPDATE users SET post_count = post_count + 1
-                                WHERE users.id = $1;`, [post.user_id])
+                                WHERE users.id = $1 RETURNING *;`, [post.user_id])
                       .then(data => {
                         badgeChecker(data);
                       //Create the new post 

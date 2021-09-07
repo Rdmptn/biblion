@@ -6,5 +6,9 @@ CREATE TABLE posts (
   book_id INTEGER REFERENCES books(id) ON DELETE CASCADE,
   summary TEXT NOT NULL,
   opinion TEXT NOT NULL,
-  CONSTRAINT no_duplicate_posts UNIQUE (user_id, book_id)
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  CONSTRAINT min_summary_length CHECK (length(summary) > 99),
+  CONSTRAINT max_summary_length CHECK (length(summary) < 1001),
+  CONSTRAINT min_opinion_length CHECK (length(opinion) > 49),
+  CONSTRAINT max_opinion_length CHECK (length(opinion) < 251)
 );

@@ -33,72 +33,63 @@ export default function Profile() {
   console.log("BADGES:", profile.unlocked_badges)
 
   return (
-    <div class="post_back">
-      <h1>Profile</h1>
-      {/* {<div>{JSON.stringify(profile)}</div>} */}
-      <table class="table">
-        <tr>
-          <td class="tdata">
-              <ul>
-                <li><img src={profile.image} alt="Active Badge" /></li>
-                <li>Profile id: {profile.id}</li>
-                <li>Name: {profile.name}</li>
-                <li>Email: {profile.email}</li>
-              </ul>
-          </td>
-        </tr>
-        <tr>
-          <td class="tdata">
-              <ul>
-                <h4>Stats</h4>
-                <li>Books Read: {profile.post_count}</li>
-                <li>Pages Read: {profile.page_count}</li>
-                <li>Comments: {profile.comment_count}</li>
-              </ul>
-          </td>
-        </tr>
-      </table>
-      {/* <ul>
-        <li><img src={profile.image} alt="Active Badge" /></li>
-        <li>Profile id: {profile.id}</li>
-        <li>Name: {profile.name}</li>
-        <li>Email: {profile.email}</li>
-      </ul>
-      <ul>
-        <h4>Stats</h4>
-        <li>Books Read: {profile.post_count}</li>
-        <li>Pages Read: {profile.page_count}</li>
-        <li>Comments: {profile.comment_count}</li>
-      </ul> */}
-      <h4>Unlocked Badges</h4>
-       <form onSubmit={(event) => handleSubmit(event)}>
-        {profile.unlocked_badges ? 
-
-          profile.unlocked_badges.map(badge => 
-          <div key={badge.id}>
-            <div>
-              <div>
-                <img src={badge.image} alt={badge.description}/>
-              </div>
-              <label>{badge.name}</label>
-            </div>
-            <span>
-              <input type="radio" name="badge" value={badge.badge_id} onChange={handleChangeBadge}/>
-            </span>
+      <div class="main-content-container"> 
+        <header class="page-header">
+          <h1>Profile</h1>
+        </header>
+        
+        <div class="card border-success mb-3 text-white bg-dark small-post-card">
+          <div class="card-body">
+            <h4 class="card-title">{profile.email}</h4>
+            <h6 class="card-title">Name: {profile.name} </h6>
+            <h6 class="card-title">Current Badge: </h6>
+            <img src={profile.image} alt="Active Badge" />
+            
           </div>
-          
-          ) 
-          
-        : ""} 
+        </div>
+        
+        <div class="card border-success mb-3 text-white bg-dark small-post-card">
+          <div class="card-body">
+            <h4 class="card-title">Stats</h4>
+            <li>Books Read: {profile.post_count}</li>
+            <li>Pages Read: {profile.page_count}</li>
+            <li>Comments: {profile.comment_count}</li>
+          </div>
+        </div>
+        
+        <div class="card border-success mb-3 text-white bg-dark small-post-card">
+          <div class="card-body">
+            <h4 class="card-title">Unlocked Badges</h4>
+            
+              <form onSubmit={(event) => handleSubmit(event)}>
+              <div class="row g-0">
+                {profile.unlocked_badges ? 
+                
+                  profile.unlocked_badges.map(badge => 
+                    <div class="col-md-3 profile-badge-display">
+                      <div key={badge.id}>
+                      <div>
+                        <img src={badge.image} alt={badge.description}/>
+                      </div>
+                      <label>{badge.name}</label>
+                      </div>
+                      <span>
+                        <input type="radio" name="badge" value={badge.badge_id} onChange={handleChangeBadge}/>
+                      </span>
+                    </div>
+                  
+                  ) 
+                  
+                : ""} 
+                </div>
+                <input class="btn btn-success" type="submit" value="Update Active Badge" />
+                
+              </form>
 
-        <input type="submit" value="Update Active Badge" />
-      </form>
+          
+        </div>
+      </div>
     </div>
   )          
   
 }
-
-// <input type="radio" name="season" value="season">Yo</input>
-
-
-  

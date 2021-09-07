@@ -26,9 +26,11 @@ module.exports = (db) => {
     console.log("userPosts", body);
 
 
-    db.query(`SELECT posts.id, posts.summary, posts.opinion, books.title, books.author, books.cover_url, categories.topic 
+    db.query(`SELECT posts.id, posts.summary, posts.opinion, books.title, books.author, books.cover_url, categories.topic, users.name, badges.image, posts.created_at
     FROM posts JOIN books ON posts.book_id=books.id 
     JOIN categories ON books.category_id=categories.id 
+    JOIN users ON posts.user_id = users.id
+    JOIN badges ON badges.id = users.active_badge
     WHERE posts.id = $1;`, [body.id])
       .then(data => {
         console.log(data.rows[0]);
