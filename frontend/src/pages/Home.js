@@ -13,7 +13,7 @@ export default function Home() {
         Biblion is a basic web app for viewing and creating book reviews made as a final project for the Lighthouse Labs web development bootcamp.
         Register or login to create a new post, or browse posts via the links and searchbar above.
       </p>
-      <p class="home-desc">Made by Cameron Uniac & Farid Asadpour.</p>
+      <p class="home-desc">Built by Cameron Uniac & Farid Asadpour.</p>
       </div>
     </div>
   )

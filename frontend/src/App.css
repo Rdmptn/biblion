@@ -111,4 +111,50 @@ div .main-content-container{
   padding-bottom: 10px;
   padding-top: 10px;
 }
-  
+
+.full-post {
+  text-align: center;
+}
+
+.full-summary {
+  padding-top: 30px;
+}
+
+.full-opinion {
+  padding-bottom: 15px;
+}
+
+.amazon-button {
+  margin: 0 auto;
+  display: block;
+  width: 200px;
+}
+
+.comment-header{
+  margin-top: 15px;
+  /* margin-bottom: 15px; */
+}
+
+.comment-card {
+  margin-top: 15px;
+}
+
+.likes-counter {
+  margin-bottom: 5px;
+}
+
+.like-button {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+}
+
+.like-button:hover {
+  cursor: pointer;
+}
+
+.btn:focus,.btn:active {
+   outline: none !important;
+   box-shadow: none;
+   border-color: rgba(0,0,0,.125);
+}
