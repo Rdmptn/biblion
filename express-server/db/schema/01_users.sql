@@ -11,8 +11,4 @@ CREATE TABLE users (
   page_count INTEGER NOT NULL DEFAULT 0,
   active_badge INTEGER NOT NULL DEFAULT 1,
   CONSTRAINT email_unique UNIQUE (email),
-  CONSTRAINT min_pass_length CHECK (length(password) > 2),
-  CONSTRAINT max_pass_length CHECK (length(password) < 21),
-  CONSTRAINT min_name_length CHECK (length(name) > 2)
-  CONSTRAINT max_name_length CHECK (length(name) < 21)
 );
