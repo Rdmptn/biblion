@@ -10,5 +10,7 @@ CREATE TABLE users (
   comment_count INTEGER NOT NULL DEFAULT 0,
   page_count INTEGER NOT NULL DEFAULT 0,
   active_badge INTEGER NOT NULL DEFAULT 1,
-  CONSTRAINT email_unique UNIQUE (email)
+  CONSTRAINT email_unique UNIQUE (email),
+  CONSTRAINT min_pass_length CHECK (length(password) > 2),
+  CONSTRAINT min_name_length CHECK (length(name) > 2)
 );

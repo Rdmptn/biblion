@@ -158,3 +158,8 @@ div .main-content-container{
    box-shadow: none;
    border-color: rgba(0,0,0,.125);
 }
+
+.error-message {
+  color: red;
+  padding-top: 20px;
+}
