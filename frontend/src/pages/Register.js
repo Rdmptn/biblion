@@ -17,7 +17,7 @@ export default function Register() {
     } else if (user.name.length < 3) {
       setErrorMessage("Name must be at least 3 characters.");
     } else if (user.name.length > 20) {
-      setErrorMessage("Name must be less than 20 characters.");
+      setErrorMessage("Name must be 20 characters or less.");
     } else if (!user.email) {
       setErrorMessage("Email field cannot be empty.");
     } else if (!user.password) {
@@ -25,7 +25,7 @@ export default function Register() {
     } else if (user.password.length < 3) {
       setErrorMessage("Password must be at least 3 characters.");
     } else if (user.password.length > 20) {
-      setErrorMessage("Password must be less than 20 characters.");
+      setErrorMessage("Password must be 20 characters or less.");
     } else {
       setErrorMessage(false);
       axios.post(`${api_url}${api_register}`, user)

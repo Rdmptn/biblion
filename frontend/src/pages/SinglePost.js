@@ -73,7 +73,7 @@ export default function SinglePost() {
     } else if (commentContent.length < 3) {
       setErrorMessage("Comment must be atleast 3 characters long.");
     } else if (commentContent.length > 100) {
-      setErrorMessage(`Comment must be less than 100 characters long. Your comment is currently ${commentContent.length} characters.`);
+      setErrorMessage(`Comment must be 100 or less characters long. Your comment is currently ${commentContent.length} characters.`);
     } else {
       setErrorMessage(false);
       axios.post(`${api_url}${api_createComment}`, commentUser)

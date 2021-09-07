@@ -28,13 +28,13 @@ export default function Create(props) {
     } else if (post.summary.length < 100) {
       setErrorMessage(`Post summary must be at least 100 characters in length. Your current summary is only ${post.summary.length} characters.`);
     } else if (post.summary.length > 1000) {
-      setErrorMessage(`Post summary must be less than 1000 characters in length. Your current summary is ${post.summary.length} characters.`);
+      setErrorMessage(`Post summary must be 1000 or less characters in length. Your current summary is ${post.summary.length} characters.`);
     } else if (!post.opinion) {
       setErrorMessage("Opinion field cannot be empty.");
     } else if (post.opinion.length < 50) {
       setErrorMessage(`Post opinion must be at least 50 characters in length. Your current opinion is only ${post.opinion.length} characters.`);
     } else if (post.opinion.length > 250) {
-      setErrorMessage(`Post opinion must be less than 250 characters in length. Your current opinion is ${post.opinion.length} characters.`);
+      setErrorMessage(`Post opinion must be 250 or lesscharacters in length. Your current opinion is ${post.opinion.length} characters.`);
     } else {
       setErrorMessage(false);
       let user_id = props.currentUser.id;
