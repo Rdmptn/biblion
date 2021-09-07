@@ -17,7 +17,7 @@ export default function UserPosts() {
   }, [])
 
   return (
-  
+    
       <div class="main-content-container">
         <header class="page-header">
           <h1>My Posts</h1>
@@ -32,5 +32,5 @@ export default function UserPosts() {
       </div>
     
   )   
-  
+
 }

@@ -20,6 +20,8 @@ var userRouter = require('./routes/user');
 var createPostRouter = require('./routes/create');
 var userPostsRouter = require('./routes/userPosts');
 var singlePostRouter = require('./routes/singlePost');
+var mySinglePostRouter = require('./routes/mySinglePost');
+var deleteMyPostRouter = require('./routes/deleteMyPost');
 var singlePostCommentsRouter = require('./routes/singlePostComments');
 var singlePostLikesRouter = require('./routes/singlePostLikes');
 var createCommentRouter = require('./routes/createComment');
@@ -55,6 +57,8 @@ app.use('/user', userRouter(db));
 app.use('/create', createPostRouter(db))
 app.use('/userPosts', userPostsRouter(db));
 app.use('/singlePost', singlePostRouter(db));
+app.use('/mySinglePost', mySinglePostRouter(db));
+app.use('/deleteMyPost', deleteMyPostRouter(db));
 app.use('/singlePostComments', singlePostCommentsRouter(db));
 app.use('/singlePostLikes', singlePostLikesRouter(db));
 app.use('/createComment', createCommentRouter(db));
