@@ -24,10 +24,9 @@ export default function SinglePost() {
   }
 
   const fetchCommentsData = function() {
-
+    
     axios.get(`${api_url}${api_singlePostComments}/${id}`)
     .then(response => setComments(response.data.comments))
-    document.getElementById('comment-input').value = "";
     let commentValue = null;
     let commentUser = {id, commentValue, user}
     setCommentUser((prev) => ({
@@ -80,6 +79,7 @@ export default function SinglePost() {
       axios.post(`${api_url}${api_createComment}`, commentUser)
       .then((response) => {
         console.log("response.data___+++:::", response.data);
+        document.getElementById('comment-input').value = "";
         
         fetchCommentsData();
         if (response.status === 200) {
@@ -158,9 +158,10 @@ export default function SinglePost() {
         <h2>Comments</h2>
       </header>
 
+      {user ?
       <div class="card border-success mb-3 text-white bg-dark login-card comment-card">
         <form  onSubmit={(event) => handleSubmit(event)}>
-         <div class="form-group">
+          <div class="form-group">
             <label for="comment-input"><h5>Leave a Comment</h5></label>
             <textarea class="form-control non-nav-input" id="comment-input" name="comment" rows="2" onChange={handleChangeComment}/>
           </div>
@@ -168,15 +169,17 @@ export default function SinglePost() {
           {errorMessage ? <div class="error-message">{errorMessage}</div> : ""}
         </form>
       </div>
+      :
+      <p>Please login to leave a comment.</p>}
 
       {comments.map(comment => 
         <div class="card border-success mb-3 text-white bg-dark small-post-card">
           <div class="card-body">
             <p class="card-text"><img src={comment.image} width="24px"/> {comment.name} — {format(comment.created_at)}</p>
             <p class="card-text">{comment.message}</p>
-            </div>
           </div>
-        )}
+        </div>
+      )}
      
     </div>
     
