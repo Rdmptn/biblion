@@ -14,6 +14,7 @@ export default function SinglePost() {
   const [likesCount, setLikesCount] = useState(0);
   const [commentUser, setCommentUser] = useState({});
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+  const [errorMessage, setErrorMessage] = useState(false);
 
   const fetchPostData = function() {
     
@@ -66,22 +67,30 @@ export default function SinglePost() {
 
 
   const handleSubmit = function(event) {
-    
     event.preventDefault();
-    
-    axios.post(`${api_url}${api_createComment}`, commentUser)
-    .then((response) => {
-      console.log("response.data___+++:::", response.data);
-      
-      fetchCommentsData();
-      if (response.status === 200) {
+    let commentContent = commentUser.commentUser.commentValue;
+    if (!commentContent) {
+      setErrorMessage("Comment cannot be empty");
+    } else if (commentContent.length < 3) {
+      setErrorMessage("Comment must be atleast 3 characters long.");
+    } else if (commentContent.length > 100) {
+      setErrorMessage(`Comment must be less than 100 characters long. Your comment is currently ${commentContent.length} characters.`);
+    } else {
+      setErrorMessage(false);
+      axios.post(`${api_url}${api_createComment}`, commentUser)
+      .then((response) => {
+        console.log("response.data___+++:::", response.data);
         
-       
-      // window.location.reload();
-      // window.history.back();
+        fetchCommentsData();
+        if (response.status === 200) {
+          
+         
+        // window.location.reload();
+        // window.history.back();
+        }
+      })
+      .catch(error => console.log(error))
     }
-  })
-    .catch(error => console.log(error))
   }
 
   const handleChangeComment = function(event) {
@@ -156,6 +165,7 @@ export default function SinglePost() {
             <textarea class="form-control non-nav-input" id="comment-input" name="comment" rows="2" onChange={handleChangeComment}/>
           </div>
           <button type="submit" class="btn btn-success">Submit</button>
+          {errorMessage ? <div class="error-message">{errorMessage}</div> : ""}
         </form>
       </div>
 
