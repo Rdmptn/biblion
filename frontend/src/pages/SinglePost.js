@@ -146,7 +146,7 @@ export default function SinglePost() {
           <p class="card-text full-summary">{post.summary}</p>
           <p class="card-text full-opinion">{post.opinion}</p>
           {likesCount === 1 ? <p>{likesCount} Like </p> : <p class="likes-counter">{likesCount} Likes</p>}
-          <img src="https://i.imgur.com/lXQ5rYF.png" class="like-button" onClick={addLike}/>
+          {user ? <img src="https://i.imgur.com/lXQ5rYF.png" class="like-button" onClick={addLike}/> : ""}
         </div>
       </div>
 
