@@ -137,7 +137,7 @@ export default function SinglePost() {
     <div class="main-content-container">
       <header class="page-header">
         <h1>Review for {post.title} by {post.author}</h1>
-        <h3>Posted By: <img src={post.image} width="24px"/> {post.name} — {format(post.created_at)} in <i>{post.topic}</i></h3>
+        <h3>Posted By: <img src={post.image} width="36px"/> {post.name} — {format(post.created_at)} in <i>{post.topic}</i></h3>
       </header>
 
       <div class="card border-success mb-3 text-white bg-dark small-post-card">
