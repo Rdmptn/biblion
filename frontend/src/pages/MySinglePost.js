@@ -22,7 +22,7 @@ export default function SinglePost() {
     
     axios.get(`${api_url}${api_singlePost}/${id}`)
     .then(response => setPost(response.data.post))
-
+  
   }
   
 
