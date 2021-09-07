@@ -27,10 +27,10 @@ module.exports = (db) => {
     const sOUser = req.body;
     console.log("<<<<<<<", req.body);
 
-    if (sOUser.summaryValue && sOUser.opinionValue) {
+   
       db.query(`UPDATE posts
        SET summary=$1, opinion=$2
-       WHERE id=$3;`, [sOUser.summaryValue, sOUser.opinionValue, sOUser.id])
+       WHERE id=$3;`, [sOUser.summary, sOUser.opinion, sOUser.id])
         .then(data => {
           //Update user stats
             
@@ -47,49 +47,7 @@ module.exports = (db) => {
             .status(500)
             .json({ error: err.message });
         });
-    } else if (sOUser.summaryValue) {
-      db.query(`UPDATE posts
-       SET summary=$1
-       WHERE id=$2;`, [sOUser.summaryValue, sOUser.id])
-        .then(data => {
-          //Update user stats
-            
-          // res.redirect("/api");
-          // return res.status(200)
-          
-          return res.status(200).send("OK");
-
-          })
-
-        .catch(err => {
-          console.log(err);
-          res
-            .status(500)
-            .json({ error: err.message });
-        });
-
-    } else if (sOUser.opinionValue) {
-      db.query(`UPDATE posts
-       SET opinion=$1
-       WHERE id=$2;`, [sOUser.opinionValue, sOUser.id])
-        .then(data => {
-          //Update user stats
-            
-          // res.redirect("/api");
-          // return res.status(200)
-          
-          return res.status(200).send("OK");
-
-          })
-
-        .catch(err => {
-          console.log(err);
-          res
-            .status(500)
-            .json({ error: err.message });
-        });
-
-    }
+   
 
     
   });

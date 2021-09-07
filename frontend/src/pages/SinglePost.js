@@ -129,6 +129,11 @@ export default function SinglePost() {
     const url = "https://www.amazon.ca/s?k=" + post.title + "&i=stripbooks";
     window.open(url)
   }
+  
+  const editRedirect = function() {
+    const editUrl = window.location.href + "/edit";
+    window.location.replace(editUrl);
+  }
 
   return (
 
@@ -139,6 +144,10 @@ export default function SinglePost() {
         <h1>Review for {post.title} by {post.author}</h1>
         <h3>Posted By: <img src={post.image} width="36px"/> {post.name} — {format(post.created_at)} in <i>{post.topic}</i></h3>
       </header>
+
+      {user ?
+        post.user_id === user.id ? <button class="btn btn-success edit-delete-button" onClick={editRedirect}>Edit/Delete</button> : ""
+      : "" }
 
       <div class="card border-success mb-3 text-white bg-dark small-post-card">
         <div class="card-body full-post">

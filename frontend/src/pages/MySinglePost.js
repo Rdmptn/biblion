@@ -15,6 +15,8 @@ export default function SinglePost() {
   const [summaryOpinionUser, setSummaryOpinionUser] = useState({});
   const [isDeleted, setIsDeleted] = useState(false);
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+  const [confirm, setConfirm] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
 
   const fetchPostData = function() {
     
@@ -22,96 +24,30 @@ export default function SinglePost() {
     .then(response => setPost(response.data.post))
 
   }
-
-  const fetchCommentsData = function() {
-
-    axios.get(`${api_url}${api_singlePostComments}/${id}`)
-    .then(response => setComments(response.data.comments))
-  }
-
-  const fetchLikesData = function() {
-    
-    axios.get(`${api_url}${api_singlePostLikes}/${id}`)
-    .then(response => {
-      console.log("hiiiiii");
-      console.log(response.data);
-      setLikesCount(response.data.likesCount.count);
-    })
-  }
+  
 
   useEffect( () => {
     
     fetchPostData();
   }, [])
 
-  useEffect( () => {
-    
-   fetchCommentsData();
-    
-  }, [])
-
-  useEffect( () => {
-    
-    fetchLikesData();
-    
-  }, [])
-
-  
-
-
-  const handleSubmit = function(event) {
-    
-    event.preventDefault();
-    
-    axios.post(`${api_url}${api_createComment}`, commentUser)
-    .then((response) => {
-      console.log("response.data___+++:::", response.data);
-      
-      fetchCommentsData();
-      if (response.status === 200) {
-        
-       
-      // window.location.reload();
-      // window.history.back();
-    }
-  })
-    .catch(error => console.log(error))
-  }
-
-  const handleChangeComment = function(event) {
-    // console.log(event.target.value);
-    // const user =JSON.parse(localStorage.getItem("user"));
-    let commentValue = event.target.value;
-    let commentUser = {id, commentValue, user}
-    setCommentUser((prev) => ({
-      ...prev,
-      commentUser
-    }))
-  }
-
-  const addLike = function(event) {
-    event.preventDefault();
-
-    let postIdUser = {id, user};
-
-    axios.post(`${api_url}${api_createLike}`, postIdUser)
-    .then((response) => {
-      console.log("response.data___+++:::", response.data);
-      
-      fetchLikesData();
-      
-      if (response.status === 200) {
-        
-      
-      // window.location.reload();
-      // window.history.back();
-      }
-    })
-    .catch(error => console.log(error))
-  }
-
   const handleEditSubmit = function(event) {
     event.preventDefault();
+    
+    if (!summaryOpinionUser.summary) { 
+      setErrorMessage('Please modify your summary or cancel.');
+    } else if (summaryOpinionUser.summary.length < 100) {
+      setErrorMessage(`Post summary must be at least 100 characters in length. Your current summary is only ${post.summary.length} characters.`);
+    } else if (summaryOpinionUser.summary.length > 1000) {
+      setErrorMessage(`Post summary must be 1000 or less characters in length. Your current summary is ${post.summary.length} characters.`);
+    } else if (!summaryOpinionUser.opinion) {
+      setErrorMessage("Please modify your opinion or cancel.");
+    } else if (summaryOpinionUser.opinion.length < 50) {
+      setErrorMessage(`Post opinion must be at least 50 characters in length. Your current opinion is only ${post.opinion.length} characters.`);
+    } else if (summaryOpinionUser.opinion.length > 250) {
+      setErrorMessage(`Post opinion must be 250 or lesscharacters in length. Your current opinion is ${post.opinion.length} characters.`);
+    } else {
+
     summaryOpinionUser.id = id;
     summaryOpinionUser.user = user;
     console.log("++++==", summaryOpinionUser);
@@ -120,44 +56,59 @@ export default function SinglePost() {
 
     axios.post(`${api_url}${api_mySinglePost}`, summaryOpinionUser)
     .then((response) => {
-      console.log("response.data___+++:::", response.data);
+      // console.log("response.data___+++:::", response.data);
       
-      fetchPostData();
-      if (response.status === 200) {
+      // fetchPostData();
+      // if (response.status === 200) {
         
        
       // window.location.reload();
       // window.history.back();
-    }
+      cancel();
+    
   })
     .catch(error => console.log(error))
-
+    }
   }
-
+  
    const handleChangeSummary = function(event) {
-    let summaryValue = event.target.value;
-    let summaryOpinionUser = {id, summaryValue, user};
-    
+    let summary = event.target.value;
     setSummaryOpinionUser((prev) => ({
       ...prev,
-      summaryOpinionUser
+      summary
     }))
+    setPost((prev) => ({
+      ...prev,
+      summary
+    }))
+  } 
+  
+  const handleChangeOpinion = function(event) {
+    let opinion = event.target.value;
+    setSummaryOpinionUser((prev) => ({
+      ...prev,
+      opinion
+    }))
+    setPost((prev) => ({
+      ...prev,
+      opinion
+    }))
+  }
 
-   }
 
-   const handleChangeOpinion = function(event) {
-    let opinionValue = event.target.value;
-    let summaryObject = {...summaryOpinionUser};
+   // const handleChangeOpinion = function(event) {
+    // let opinionValue = event.target.value;
+    // let summaryObject = {...summaryOpinionUser};
     // summaryObject = {};
-    summaryObject[event.target.name] = event.target.value;
+    // summaryObject[event.target.name] = event.target.value;
     // let summaryOpinionUser = {id, opinionValue, user};
     
-    setSummaryOpinionUser({...summaryObject})
+    // setSummaryOpinionUser({...summaryObject})
     // setSummaryOpinionUser((prev) => ({
-    //   ...prev,
-    //   summaryObject
+      // ...prev,
+      // summaryObject
     // }))
-   }
+   // }
 
    const deleteMyPost = function(event) {
      console.log("hi delete post");
@@ -177,122 +128,55 @@ export default function SinglePost() {
           }
         })
           .catch(error => console.log(error))
-
-
    }
-
-  const amazonRedirect = function(post) {
-    const url = "https://www.amazon.ca/s?k=" + post.title + "&i=stripbooks";
-    window.open(url)
-  }
-
+   
+   const cancel = function() {
+    let baseUrl = window.location.origin + "/Posts/";
+    let postUrl = `${baseUrl}${post.id}`;
+     window.location.replace(postUrl)
+   }
+   
+   // if (user.id !== post.user_id) {
+      // window.location.replace("/");
+   // }
+   
+   
   {if (isDeleted) {window.location.replace("/userPosts")}}
 
   return (
-    <div class="post_back">
-      {/* <article>
-        {id}
-      </article> */}
-      <table class="table">
-        <tr>
-          <td class="tdata">
-              <ul>
-                {/* <li>Post id: {post.id}</li> */}
-                <li><img src={post.cover_url}/></li>
-                <li>Book Title: {post.title}</li>
-                <li>Author: {post.author}</li>
-                <li>Genre: {post.topic}</li>
-                <li>Summary: {post.summary}</li>
-                <li>Opinion: {post.opinion}</li>
-              </ul>
-          </td>
-        </tr>
-      </table>
-      {/* <ul>
-        <li>Post id: {post.id}</li>
-        <li><img src={post.cover_url}/></li>
-        <li>Book Title: {post.title}</li>
-        <li>Author: {post.author}</li>
-        <li>Genre: {post.topic}</li>
-        <li>Summary: {post.summary}</li>
-        <li>Opinion: {post.opinion}</li>
-      </ul> */}
-      <div>
-      <a href="#" onClick={() => {amazonRedirect(post)}}>
-        <img src="https://wplov.in/wp-content/uploads/download-300x101-1.png" alt="Buy now on amazon" width="200px"/>
-      </a>
-      </div>
-      <div>
-        {likesCount}Likes
-      </div>
-      <div>
-        <button onClick={addLike}>Like</button>
-      </div>
-      {/* <div>
-        {comments.map(comment => 
-          <ul>
-            <li>Comment id: {comment.id}</li>
-            <li>Comment Message: {comment.message}</li>
-          </ul>
-        )}   
-      </div>  */}
-      <div>
-        <table class="table">
-                  <thead>
-                      <tr>
-                          <th ><h2>The Comments For This Post</h2></th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                  {comments.map(comment => 
-            <tr>
-              <td class="tdata">
-                  <ul>
-                    <li>Comment id: {comment.id}</li>
-                    <li>Comment Message: {comment.message}</li>
-                  
-                  </ul>
-                </td>
-
-              </tr>
-                      )}
-                  </tbody>
-          </table>
-      </div>
-      <div>
-        <form  onSubmit={(event) => handleSubmit(event)}>
-          <label>
-            Enter Your Comment:
-            <input type="text" name="comment" onChange={handleChangeComment}/>
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
-      </div>
-      <div>
+    
+       <div class="main-content-container"> 
+          <header class="page-header">
+           <h1>Edit {post.title}</h1>
+           <h3>Posted By: <img src={post.image} width="36px"/> {post.name} </h3>
+          </header>
+          
+        <button class="btn btn-danger edit-delete-button" onClick={() => setConfirm(true)}>Delete This Post</button> 
+          {confirm ? 
+            <div class="confirm-buttons">
+              <p>Are you sure?</p> 
+              <button class="btn btn-success" onClick={deleteMyPost}>Yes</button>
+              <button class="btn btn-secondary" onClick={() => setConfirm(false)}>Cancel</button>
+            </div>
+            : 
+            "" 
+            }
+          
+        <div class="card border-success mb-3 text-white bg-dark login-card">
         <form  onSubmit={(event) => handleEditSubmit(event)}>
-          <div>
-            <label>
-              Edit Your Post Here
-            </label>
-          </div>
-          <div>
-            <label>
-              Enter New Summary If you Wish:
-              <input type="text" name="summaryValue" onChange={handleChangeOpinion}/>
-            </label>
-          </div>
-          <div>
-              <label>
-                Enter New Opinion If you Wish:
-                <input type="text" name="opinionValue" onChange={handleChangeOpinion}/>
-              </label>
-          </div>
-          <input type="submit" value="Submit" />
+        <div class="form-group">
+                <label for="summary"><h5>Edit Summary</h5></label>
+                <textarea class="form-control non-nav-input" id="summary" rows="4" value={post.summary} onChange={handleChangeSummary}></textarea>
+              </div>
+              <div class="form-group">
+                <label for="opinion"><h5>Edit Opinion</h5></label>
+                <textarea class="form-control non-nav-input" id="opinion" rows="2" value={post.opinion} onChange={handleChangeOpinion}/>
+              </div>
+              <button type="submit" class="btn btn-success">Submit</button>
+              <button class="btn btn-secondary" onClick={cancel}>Cancel</button>
+              {errorMessage ? <div class="error-message">{errorMessage}</div> : ""}
         </form>
-      </div>
-      <div>
-         <button onClick={deleteMyPost}>Delete This Post</button>
-      </div>
+       </div>
     </div>
     
   )
