@@ -2,7 +2,7 @@
 
 Biblion is a web application used for creating and viewing book reviews created with React, using a PostreSQL database and Express server to host persistent user and post data.  
 
-Biblion also makes use of the public google books API to grab book covers and page counts when a new post is made for a book not already stored in the database.
+Biblion also makes use of the public Google books API to grab book covers and page counts when a new post is made for a book not already stored in the database.
 
 ## Screenshots
 
