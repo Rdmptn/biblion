@@ -4,16 +4,16 @@ Biblion is a web application used for creating and viewing book reviews created 
 
 ## Screenshots
 
-!["All Posts"]()  
+!["All Posts"](https://github.com/Rdmptn/biblion/blob/master/docs/All%20Posts.png?raw=true)  
 All Posts
 
-!["Single Post"]()   
+!["Single Post"](https://github.com/Rdmptn/biblion/blob/master/docs/Single%20Post.png?raw=true)   
 Single Post
 
-!["Create Post"]()   
+!["Create Post"](https://github.com/Rdmptn/biblion/blob/master/docs/Create%20Post.png?raw=true)   
 Create Post
 
-!["Profile"]()   
+!["Profile"](https://github.com/Rdmptn/biblion/blob/master/docs/Profile.png?raw=true)   
 Profile
 
 ## Setup
